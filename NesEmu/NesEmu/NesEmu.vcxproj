@@ -142,11 +142,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Memory.h" />
+    <ClInclude Include="OPCodes.h" />
     <ClInclude Include="Registers.h" />
     <ClInclude Include="StatusFlags.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="OPCodes.cpp" />
     <ClCompile Include="Registers.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

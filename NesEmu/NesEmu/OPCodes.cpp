@@ -89,3 +89,23 @@ void NesEmu::LDX_Absolute(Registers& registers, Memory& memory) {
 void NesEmu::LDX_Absolute_Y(Registers& registers, Memory& memory) {
 	registers.X = LD_Absolute_Helper(registers, memory, registers.Y);
 }
+
+void NesEmu::LDY_Immediate(Registers& registers, Memory& memory) {
+	registers.Y = LD_Immediate_Helper(registers, memory);
+}
+
+void NesEmu::LDY_ZeroPage(Registers& registers, Memory& memory) {
+	registers.Y = LD_ZeroPage_Helper(registers, memory);
+}
+
+void NesEmu::LDY_ZeroPage_X(Registers& registers, Memory& memory) {
+	registers.Y = LD_ZeroPage_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::LDY_Absolute(Registers& registers, Memory& memory) {
+	registers.Y = LD_Absolute_Helper(registers, memory);
+}
+
+void NesEmu::LDY_Absolute_X(Registers& registers, Memory& memory) {
+	registers.Y = LD_Absolute_Helper(registers, memory, registers.X);
+}

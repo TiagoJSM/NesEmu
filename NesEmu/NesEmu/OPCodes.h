@@ -22,4 +22,10 @@ namespace NesEmu {
 	void LDX_ZeroPage_Y(Registers& registers, Memory& memory);
 	void LDX_Absolute(Registers& registers, Memory& memory);
 	void LDX_Absolute_Y(Registers& registers, Memory& memory);
+
+	void LDY_Immediate(Registers& registers, Memory& memory);
+	void LDY_ZeroPage(Registers& registers, Memory& memory);
+	void LDY_ZeroPage_X(Registers& registers, Memory& memory);
+	void LDY_Absolute(Registers& registers, Memory& memory);
+	void LDY_Absolute_X(Registers& registers, Memory& memory);
 }

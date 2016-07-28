@@ -9,4 +9,11 @@
 
 namespace NesEmu {
 	void LDA_Immediate(Registers& registers, Memory& memory);
+	void LDA_ZeroPage(Registers& registers, Memory& memory);
+	void LDA_ZeroPage_X(Registers& registers, Memory& memory);
+	void LDA_Absolute(Registers& registers, Memory& memory);
+	void LDA_Absolute_X(Registers& registers, Memory& memory);
+	void LDA_Absolute_Y(Registers& registers, Memory& memory);
+	void LDA_Indirect_X(Registers& registers, Memory& memory);
+	void LDA_Indirect_Y(Registers& registers, Memory& memory);
 }

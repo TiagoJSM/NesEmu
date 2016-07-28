@@ -5,5 +5,8 @@
 namespace NesEmu{
 	struct Memory {
 		unsigned char data[2 * KBYTE];
+
+		unsigned char GetByte(unsigned short address);
+		unsigned short GetWord(unsigned short address);
 	};
 }

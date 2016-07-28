@@ -25,6 +25,29 @@ unsigned char LD_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& m
 	return static_cast<unsigned char>(value);
 }
 
+void ST_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, unsigned char registerValue, unsigned short offset = 0) {
+	auto operand = memory.GetByte(registers.PC + 1);
+	memory.StoreByte(operand + offset, registerValue);
+}
+
+void ST_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, unsigned char registerValue, unsigned short offset = 0) {
+	auto operand = memory.GetWord(registers.PC + 1);
+	memory.StoreByte(operand + offset, registerValue);
+}
+
+unsigned short GetIndirectXAddress(NesEmu::Registers& registers, NesEmu::Memory& memory) {
+	auto operand = memory.GetByte(registers.PC + 1);
+	auto address = operand + registers.X;
+	auto indirectAddress = memory.GetWord(address);
+	return indirectAddress;
+}
+
+unsigned short GetIndirectYAddress(NesEmu::Registers& registers, NesEmu::Memory& memory) {
+	auto operand = memory.GetByte(registers.PC + 1);
+	auto indirectAddress = memory.GetWord(operand) + registers.Y;
+	return indirectAddress;
+}
+
 
 
 void NesEmu::LDA_Immediate(Registers& registers, Memory& memory) {
@@ -52,9 +75,7 @@ void NesEmu::LDA_Absolute_Y(Registers& registers, Memory& memory) {
 }
 
 void NesEmu::LDA_Indirect_X(Registers& registers, Memory& memory) {
-	auto operand = memory.GetByte(registers.PC + 1);
-	auto address = operand + registers.X;
-	auto indirectAddress = memory.GetWord(address);
+	auto indirectAddress = GetIndirectXAddress(registers, memory);
 	auto value = static_cast<char>(memory.GetByte(indirectAddress));
 	registers.A = value;
 	registers.SetNegative(value);
@@ -62,9 +83,8 @@ void NesEmu::LDA_Indirect_X(Registers& registers, Memory& memory) {
 }
 
 void NesEmu::LDA_Indirect_Y(Registers& registers, Memory& memory) {
-	auto operand = memory.GetByte(registers.PC + 1);
-	auto address = memory.GetWord(operand) + registers.Y;
-	auto value = static_cast<char>(memory.GetByte(address));
+	auto indirectAddress = GetIndirectYAddress(registers, memory);
+	auto value = static_cast<char>(memory.GetByte(indirectAddress));
 	registers.A = value;
 	registers.SetNegative(value);
 	registers.SetZero(value);
@@ -108,4 +128,58 @@ void NesEmu::LDY_Absolute(Registers& registers, Memory& memory) {
 
 void NesEmu::LDY_Absolute_X(Registers& registers, Memory& memory) {
 	registers.Y = LD_Absolute_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::STA_ZeroPage(Registers& registers, Memory& memory) {
+	ST_ZeroPage_Helper(registers, memory, registers.A);
+}
+
+void NesEmu::STA_ZeroPage_X(Registers& registers, Memory& memory) {
+	ST_ZeroPage_Helper(registers, memory, registers.A, registers.X);
+}
+
+void NesEmu::STA_Absolute(Registers& registers, Memory& memory) {
+	ST_Absolute_Helper(registers, memory, registers.A);
+}
+
+void NesEmu::STA_Absolute_X(Registers& registers, Memory& memory) {
+	ST_Absolute_Helper(registers, memory, registers.A, registers.X);
+}
+
+void NesEmu::STA_Absolute_Y(Registers& registers, Memory& memory) {
+	ST_Absolute_Helper(registers, memory, registers.A, registers.Y);
+}
+
+void NesEmu::STA_Indirect_X(Registers& registers, Memory& memory) {
+	auto indirectAddress = GetIndirectXAddress(registers, memory);
+	memory.StoreByte(indirectAddress, registers.A);
+}
+
+void NesEmu::STA_Indirect_Y(Registers& registers, Memory& memory) {
+	auto indirectAddress = GetIndirectYAddress(registers, memory);
+	memory.StoreByte(indirectAddress, registers.A);
+}
+
+void NesEmu::STX_ZeroPage(Registers& registers, Memory& memory) {
+	ST_ZeroPage_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::STX_ZeroPage_Y(Registers& registers, Memory& memory) {
+	ST_ZeroPage_Helper(registers, memory, registers.X, registers.Y);
+}
+
+void NesEmu::STX_Absolute(Registers& registers, Memory& memory) {
+	ST_Absolute_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::STY_ZeroPage(Registers& registers, Memory& memory) {
+	ST_ZeroPage_Helper(registers, memory, registers.Y);
+}
+
+void NesEmu::STY_ZeroPage_X(Registers& registers, Memory& memory) {
+	ST_ZeroPage_Helper(registers, memory, registers.Y, registers.X);
+}
+
+void NesEmu::STY_Absolute(Registers& registers, Memory& memory) {
+	ST_Absolute_Helper(registers, memory, registers.X);
 }

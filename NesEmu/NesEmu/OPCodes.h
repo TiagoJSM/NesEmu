@@ -28,4 +28,20 @@ namespace NesEmu {
 	void LDY_ZeroPage_X(Registers& registers, Memory& memory);
 	void LDY_Absolute(Registers& registers, Memory& memory);
 	void LDY_Absolute_X(Registers& registers, Memory& memory);
+
+	void STA_ZeroPage(Registers& registers, Memory& memory);
+	void STA_ZeroPage_X(Registers& registers, Memory& memory);
+	void STA_Absolute(Registers& registers, Memory& memory);
+	void STA_Absolute_X(Registers& registers, Memory& memory);
+	void STA_Absolute_Y(Registers& registers, Memory& memory);
+	void STA_Indirect_X(Registers& registers, Memory& memory);
+	void STA_Indirect_Y(Registers& registers, Memory& memory);
+
+	void STX_ZeroPage(Registers& registers, Memory& memory);
+	void STX_ZeroPage_Y(Registers& registers, Memory& memory);
+	void STX_Absolute(Registers& registers, Memory& memory);
+
+	void STY_ZeroPage(Registers& registers, Memory& memory);
+	void STY_ZeroPage_X(Registers& registers, Memory& memory);
+	void STY_Absolute(Registers& registers, Memory& memory);
 }

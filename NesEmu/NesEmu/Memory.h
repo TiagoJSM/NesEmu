@@ -8,5 +8,6 @@ namespace NesEmu{
 
 		unsigned char GetByte(unsigned short address);
 		unsigned short GetWord(unsigned short address);
+		void StoreByte(unsigned short address, unsigned char byte);
 	};
 }

@@ -10,4 +10,8 @@ namespace NesEmu {
 			(static_cast<unsigned short>(this->data[address + 1]) << sizeof(unsigned char)) + 
 			static_cast<unsigned short>(this->data[address]);
 	}
+
+	void Memory::StoreByte(unsigned short address, unsigned char byte) {
+		this->data[address] = byte;
+	}
 }

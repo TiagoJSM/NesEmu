@@ -16,4 +16,10 @@ namespace NesEmu {
 	void LDA_Absolute_Y(Registers& registers, Memory& memory);
 	void LDA_Indirect_X(Registers& registers, Memory& memory);
 	void LDA_Indirect_Y(Registers& registers, Memory& memory);
+	
+	void LDX_Immediate(Registers& registers, Memory& memory);
+	void LDX_ZeroPage(Registers& registers, Memory& memory);
+	void LDX_ZeroPage_Y(Registers& registers, Memory& memory);
+	void LDX_Absolute(Registers& registers, Memory& memory);
+	void LDX_Absolute_Y(Registers& registers, Memory& memory);
 }

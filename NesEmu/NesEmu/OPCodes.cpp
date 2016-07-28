@@ -25,10 +25,11 @@ unsigned char LD_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& m
 	return static_cast<unsigned char>(value);
 }
 
+
+
 void NesEmu::LDA_Immediate(Registers& registers, Memory& memory) {
 	registers.A = LD_Immediate_Helper(registers, memory);
 }
-
 
 void NesEmu::LDA_ZeroPage(Registers& registers, Memory& memory) {
 	registers.A = LD_ZeroPage_Helper(registers, memory);
@@ -67,4 +68,24 @@ void NesEmu::LDA_Indirect_Y(Registers& registers, Memory& memory) {
 	registers.A = value;
 	registers.SetNegative(value);
 	registers.SetZero(value);
+}
+
+void NesEmu::LDX_Immediate(Registers& registers, Memory& memory) {
+	registers.X = LD_Immediate_Helper(registers, memory);
+}
+
+void NesEmu::LDX_ZeroPage(Registers& registers, Memory& memory) {
+	registers.X = LD_ZeroPage_Helper(registers, memory);
+}
+
+void NesEmu::LDX_ZeroPage_Y(Registers& registers, Memory& memory) {
+	registers.X = LD_ZeroPage_Helper(registers, memory, registers.Y);
+}
+
+void NesEmu::LDX_Absolute(Registers& registers, Memory& memory) {
+	registers.X = LD_Absolute_Helper(registers, memory);
+}
+
+void NesEmu::LDX_Absolute_Y(Registers& registers, Memory& memory) {
+	registers.X = LD_Absolute_Helper(registers, memory, registers.Y);
 }

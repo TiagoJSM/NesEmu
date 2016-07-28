@@ -31,6 +31,24 @@ void NesEmu::LDA_Absolute(Registers& registers, Memory& memory) {
 	registers.SetZero(value);
 }
 
+void NesEmu::LDA_Absolute_X(Registers& registers, Memory& memory) {
+	auto operand = memory.GetWord(registers.PC + 1);
+	auto address = operand + registers.X;
+	auto value = static_cast<char>(memory.GetByte(address));
+	registers.A = value;
+	registers.SetNegative(value);
+	registers.SetZero(value);
+}
+
+void NesEmu::LDA_Absolute_Y(Registers& registers, Memory& memory) {
+	auto operand = memory.GetWord(registers.PC + 1);
+	auto address = operand + registers.Y;
+	auto value = static_cast<char>(memory.GetByte(address));
+	registers.A = value;
+	registers.SetNegative(value);
+	registers.SetZero(value);
+}
+
 void NesEmu::LDA_Indirect_X(Registers& registers, Memory& memory) {
 	auto operand = memory.GetByte(registers.PC + 1);
 	auto address = operand + registers.X;
@@ -43,8 +61,8 @@ void NesEmu::LDA_Indirect_X(Registers& registers, Memory& memory) {
 
 void NesEmu::LDA_Indirect_Y(Registers& registers, Memory& memory) {
 	auto operand = memory.GetByte(registers.PC + 1);
-	auto indirectAddress = memory.GetWord(operand) + registers.Y;
-	auto value = static_cast<char>(memory.GetByte(indirectAddress));
+	auto address = memory.GetWord(operand) + registers.Y;
+	auto value = static_cast<char>(memory.GetByte(address));
 	registers.A = value;
 	registers.SetNegative(value);
 	registers.SetZero(value);

@@ -28,15 +28,15 @@ namespace NesEmu {
 		return (this->P & NEGATIVE_MASK);
 	}
 
-	void Registers::SetNegative(char data) {
+	void Registers::SetNegative(int8_t data) {
 		this->SetBits(data < 0, NEGATIVE_MASK);
 	}
 
-	void Registers::SetZero(char data) {
+	void Registers::SetZero(int8_t data) {
 		this->SetBits(data == 0, ZERO_MASK);
 	}
 
-	void Registers::SetBits(bool condition, char bitMask) {
-		this->P = condition ? (this->P | NEGATIVE_MASK) : (this->P & !NEGATIVE_MASK);
+	void Registers::SetBits(bool condition, uint8_t bitMask) {
+		this->P = condition ? (this->P | bitMask) : (this->P & !bitMask);
 	}
 }

@@ -1,13 +1,14 @@
 #pragma once
 
+#include <stdint.h>
 #include "StatusFlags.h"
 
 namespace NesEmu {
 	// http://wiki.nesdev.com/w/index.php/CPU_status_flag_behavior
 	class Registers {
 	public:
-		unsigned char A, X, Y, S, P;
-		unsigned short PC;
+		uint8_t A, X, Y, S, P;
+		uint16_t PC;
 
 		Registers();
 
@@ -18,11 +19,11 @@ namespace NesEmu {
 		bool Overflow();
 		bool Negative();
 
-		void SetNegative(char data);
-		void SetZero(char data);
+		void SetNegative(int8_t data);
+		void SetZero(int8_t data);
 
 	private:
-		inline void SetBits(bool condition, char bitMask);
+		inline void SetBits(bool condition, uint8_t bitMask);
 	};
 
 }

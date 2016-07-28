@@ -1,48 +1,48 @@
 #include "OPCodes.h"
 
-unsigned char LD_Immediate_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory) {
-	auto operand = static_cast<char>(memory.GetByte(registers.PC + 1));
+uint8_t LD_Immediate_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory) {
+	auto operand = static_cast<int8_t>(memory.GetByte(registers.PC + 1));
 	registers.SetNegative(operand);
 	registers.SetZero(operand);
-	return static_cast<unsigned char>(operand);
+	return static_cast<uint8_t>(operand);
 }
 
-unsigned char LD_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, unsigned char registerValue = 0) {
+uint8_t LD_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t registerValue = 0) {
 	auto operand = memory.GetWord(registers.PC + 1);
 	auto address = operand + registerValue;
-	auto value = static_cast<char>(memory.GetByte(address));
+	auto value = static_cast<int8_t>(memory.GetByte(address));
 	registers.SetNegative(value);
 	registers.SetZero(value);
-	return static_cast<unsigned char>(value);
+	return static_cast<uint8_t>(value);
 }
 
-unsigned char LD_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, unsigned char registerValue = 0) {
+uint8_t LD_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t registerValue = 0) {
 	auto operand = memory.GetByte(registers.PC + 1);
-	auto value = static_cast<char>(memory.GetByte(operand)) + registerValue;
+	auto value = static_cast<int8_t>(memory.GetByte(operand)) + registerValue;
 	registers.A = value;
 	registers.SetNegative(value);
 	registers.SetZero(value);
-	return static_cast<unsigned char>(value);
+	return static_cast<uint8_t>(value);
 }
 
-void ST_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, unsigned char registerValue, unsigned short offset = 0) {
+void ST_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t registerValue, uint16_t offset = 0) {
 	auto operand = memory.GetByte(registers.PC + 1);
 	memory.StoreByte(operand + offset, registerValue);
 }
 
-void ST_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, unsigned char registerValue, unsigned short offset = 0) {
+void ST_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t registerValue, uint16_t offset = 0) {
 	auto operand = memory.GetWord(registers.PC + 1);
 	memory.StoreByte(operand + offset, registerValue);
 }
 
-unsigned short GetIndirectXAddress(NesEmu::Registers& registers, NesEmu::Memory& memory) {
+uint16_t GetIndirectXAddress(NesEmu::Registers& registers, NesEmu::Memory& memory) {
 	auto operand = memory.GetByte(registers.PC + 1);
 	auto address = operand + registers.X;
 	auto indirectAddress = memory.GetWord(address);
 	return indirectAddress;
 }
 
-unsigned short GetIndirectYAddress(NesEmu::Registers& registers, NesEmu::Memory& memory) {
+uint16_t GetIndirectYAddress(NesEmu::Registers& registers, NesEmu::Memory& memory) {
 	auto operand = memory.GetByte(registers.PC + 1);
 	auto indirectAddress = memory.GetWord(operand) + registers.Y;
 	return indirectAddress;
@@ -76,7 +76,7 @@ void NesEmu::LDA_Absolute_Y(Registers& registers, Memory& memory) {
 
 void NesEmu::LDA_Indirect_X(Registers& registers, Memory& memory) {
 	auto indirectAddress = GetIndirectXAddress(registers, memory);
-	auto value = static_cast<char>(memory.GetByte(indirectAddress));
+	auto value = static_cast<int8_t>(memory.GetByte(indirectAddress));
 	registers.A = value;
 	registers.SetNegative(value);
 	registers.SetZero(value);
@@ -84,7 +84,7 @@ void NesEmu::LDA_Indirect_X(Registers& registers, Memory& memory) {
 
 void NesEmu::LDA_Indirect_Y(Registers& registers, Memory& memory) {
 	auto indirectAddress = GetIndirectYAddress(registers, memory);
-	auto value = static_cast<char>(memory.GetByte(indirectAddress));
+	auto value = static_cast<int8_t>(memory.GetByte(indirectAddress));
 	registers.A = value;
 	registers.SetNegative(value);
 	registers.SetZero(value);

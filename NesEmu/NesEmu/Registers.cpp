@@ -36,6 +36,14 @@ namespace NesEmu {
 		this->SetBits(data == 0, ZERO_MASK);
 	}
 
+	void Registers::SetCarry(int16_t data) {
+		this->SetBits(data > MAX_BYTE, CARRY_MASK);
+	}
+
+	void Registers::SetOverflow(bool set) {
+		this->SetBits(set, OVERFLOW_MASK);
+	}
+
 	void Registers::SetBits(bool condition, uint8_t bitMask) {
 		this->P = condition ? (this->P | bitMask) : (this->P & !bitMask);
 	}

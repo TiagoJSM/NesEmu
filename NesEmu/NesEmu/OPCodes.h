@@ -2,6 +2,8 @@
 
 #include "Registers.h"
 #include "Memory.h"
+#include "UtilitaryFunctions.h"
+#include "Macros.h"
 
 //http://www.6502.org/tutorials/6502opcodes.html
 //http://wiki.nesdev.com/w/index.php/CPU_unofficial_opcodes
@@ -44,4 +46,22 @@ namespace NesEmu {
 	void STY_ZeroPage(Registers& registers, Memory& memory);
 	void STY_ZeroPage_X(Registers& registers, Memory& memory);
 	void STY_Absolute(Registers& registers, Memory& memory);
+
+	void ADC_Immediate(Registers& registers, Memory& memory);
+	void ADC_ZeroPage(Registers& registers, Memory& memory);
+	void ADC_ZeroPage_X(Registers& registers, Memory& memory);
+	void ADC_Absolute(Registers& registers, Memory& memory);
+	void ADC_Absolute_X(Registers& registers, Memory& memory);
+	void ADC_Absolute_Y(Registers& registers, Memory& memory);
+	void ADC_Indirect_X(Registers& registers, Memory& memory);
+	void ADC_Indirect_Y(Registers& registers, Memory& memory);
+
+	void AND_Immediate(Registers& registers, Memory& memory);
+	void AND_ZeroPage(Registers& registers, Memory& memory);
+	void AND_ZeroPage_X(Registers& registers, Memory& memory);
+	void AND_Absolute(Registers& registers, Memory& memory);
+	void AND_Absolute_X(Registers& registers, Memory& memory);
+	void AND_Absolute_Y(Registers& registers, Memory& memory);
+	void AND_Indirect_X(Registers& registers, Memory& memory);
+	void AND_Indirect_Y(Registers& registers, Memory& memory);
 }

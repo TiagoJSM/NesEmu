@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Macros.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="OPCodes.h" />
     <ClInclude Include="Registers.h" />

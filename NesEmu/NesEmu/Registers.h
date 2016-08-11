@@ -6,6 +6,17 @@
 
 namespace NesEmu {
 	// http://wiki.nesdev.com/w/index.php/CPU_status_flag_behavior
+    // http://nesdev.com/6502.txt
+    //Flags:
+    // 7   6   5   4   3   2   1   0
+    // S   V       B   D   I   Z   C
+    // C - Carry flag
+    // Z - Zero flag
+    // I - this is an interrupt enable/disable flag
+    // D - this is the decimal mode status flag
+    // B - this is set when a software interrupt (BRK instruction) is executed
+    // V - Overflow flag
+    // S - Sign flag
 	class Registers {
 	public:
 		uint8_t A, X, Y, S, P;

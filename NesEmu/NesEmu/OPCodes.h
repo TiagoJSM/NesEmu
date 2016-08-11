@@ -64,4 +64,18 @@ namespace NesEmu {
 	void AND_Absolute_Y(Registers& registers, Memory& memory);
 	void AND_Indirect_X(Registers& registers, Memory& memory);
 	void AND_Indirect_Y(Registers& registers, Memory& memory);
+
+    void EOR_Immediate(Registers& registers, Memory& memory);
+    void EOR_ZeroPage(Registers& registers, Memory& memory);
+    void EOR_ZeroPage_X(Registers& registers, Memory& memory);
+    void EOR_Absolute(Registers& registers, Memory& memory);
+    void EOR_Absolute_X(Registers& registers, Memory& memory);
+    void EOR_Absolute_Y(Registers& registers, Memory& memory);
+    void EOR_Indirect_X(Registers& registers, Memory& memory);
+    void EOR_Indirect_Y(Registers& registers, Memory& memory);
+
+    void DEC_ZeroPage(Registers& registers, Memory& memory);
+    void DEC_ZeroPage_X(Registers& registers, Memory& memory);
+    void DEC_Absolute(Registers& registers, Memory& memory);
+    void DEC_Absolute_X(Registers& registers, Memory& memory);
 }

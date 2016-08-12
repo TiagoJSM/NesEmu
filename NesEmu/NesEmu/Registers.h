@@ -34,6 +34,7 @@ namespace NesEmu {
 		void SetNegative(int8_t data);
 		void SetZero(int8_t data);
 		void SetCarry(int16_t data);
+        void SetCarry(bool set);
 		void SetOverflow(bool set);
 
 	private:

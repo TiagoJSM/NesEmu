@@ -40,6 +40,10 @@ namespace NesEmu {
 		this->SetBits(data > MAX_BYTE, CARRY_MASK);
 	}
 
+    void Registers::SetCarry(bool set) {
+        this->SetBits(set, CARRY_MASK);
+    }
+
 	void Registers::SetOverflow(bool set) {
 		this->SetBits(set, OVERFLOW_MASK);
 	}

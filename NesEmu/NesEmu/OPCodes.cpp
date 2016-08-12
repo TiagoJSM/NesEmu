@@ -85,7 +85,7 @@ void ADC_Helper(NesEmu::Registers& registers, uint8_t operand) {
 		registers.A = NesEmu::BcdToDec(registers.A);
 	}
 
-	registers.SetCarry(result);
+	registers.SetCarry(static_cast<int16_t>(result));
 	registers.SetOverflow(TestOverflow(operand, regA, registers.A));
 	registers.SetZero(result);
 	registers.SetNegative(result);
@@ -160,6 +160,32 @@ void DEC_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
     memory.StoreByte(address, data);
 }
 
+uint8_t ASL_Helper(uint8_t value, bool& carry) {
+    carry = value & BIT_7_MASK != 0;
+    return value << 1;
+}
+
+void ASL_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
+    bool carry;
+    auto address = ZeroPage_Helper(registers, memory, offset);
+    auto value = memory.GetByte(address);
+    value = ASL_Helper(value, carry);
+    memory.StoreByte(address, value);
+    registers.SetZero(value);
+    registers.SetNegative(value);
+    registers.SetCarry(carry);
+}
+
+void ASL_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
+    bool carry;
+    auto address = Absolute_Helper(registers, memory, offset);
+    auto value = memory.GetByte(address);
+    value = ASL_Helper(value, carry);
+    memory.StoreByte(address, value);
+    registers.SetZero(value);
+    registers.SetNegative(value);
+    registers.SetCarry(carry);
+}
 
 // END HELPERS
 
@@ -422,4 +448,28 @@ void NesEmu::DEC_Absolute(Registers& registers, Memory& memory) {
 
 void NesEmu::DEC_Absolute_X(Registers& registers, Memory& memory) {
     DEC_Absolute_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::ASL_Accumulator(Registers& registers, Memory& memory) {
+    bool carry;
+    registers.A = ASL_Helper(registers.A, carry);
+    registers.SetZero(registers.A);
+    registers.SetNegative(registers.A);
+    registers.SetCarry(carry);
+}
+
+void NesEmu::ASL_ZeroPage(Registers& registers, Memory& memory) {
+    ASL_ZeroPage_Helper(registers, memory);
+}
+
+void NesEmu::ASL_ZeroPage_X(Registers& registers, Memory& memory) {
+    ASL_ZeroPage_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::ASL_Absolute(Registers& registers, Memory& memory) {
+    ASL_Absolute_Helper(registers, memory);
+}
+
+void NesEmu::ASL_Absolute_X(Registers& registers, Memory& memory) {
+    ASL_Absolute_Helper(registers, memory, registers.X);
 }

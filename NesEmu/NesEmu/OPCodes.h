@@ -78,4 +78,10 @@ namespace NesEmu {
     void DEC_ZeroPage_X(Registers& registers, Memory& memory);
     void DEC_Absolute(Registers& registers, Memory& memory);
     void DEC_Absolute_X(Registers& registers, Memory& memory);
+
+    void ASL_Accumulator(Registers& registers, Memory& memory);
+    void ASL_ZeroPage(Registers& registers, Memory& memory);
+    void ASL_ZeroPage_X(Registers& registers, Memory& memory);
+    void ASL_Absolute(Registers& registers, Memory& memory);
+    void ASL_Absolute_X(Registers& registers, Memory& memory);
 }

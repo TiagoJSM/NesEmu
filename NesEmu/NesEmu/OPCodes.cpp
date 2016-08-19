@@ -124,7 +124,7 @@ void AND_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
 
 
 void EOR_Helper(NesEmu::Registers& registers, uint8_t operand) {
-    registers.A = registers.A | operand;
+    registers.A = registers.A ^ operand;
 
     registers.SetZero(static_cast<int8_t>(registers.A));
     registers.SetNegative(static_cast<int8_t>(registers.A));

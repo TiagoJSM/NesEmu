@@ -32,8 +32,16 @@ namespace NesEmu {
 		this->SetBits(data < 0, NEGATIVE_MASK);
 	}
 
+	void Registers::SetNegative(bool set) {
+		this->SetBits(set, NEGATIVE_MASK);
+	}
+
 	void Registers::SetZero(int8_t data) {
 		this->SetBits(data == 0, ZERO_MASK);
+	}
+
+	void Registers::SetZero(bool set) {
+		this->SetBits(set, ZERO_MASK);
 	}
 
 	void Registers::SetCarry(int16_t data) {
@@ -46,6 +54,14 @@ namespace NesEmu {
 
 	void Registers::SetOverflow(bool set) {
 		this->SetBits(set, OVERFLOW_MASK);
+	}
+
+	void Registers::SetInterrupt(bool set) {
+		this->SetBits(set, INTERRUPT_INHIBIT_MASK);
+	}
+
+	void Registers::SetDecimal(bool set) {
+		this->SetBits(set, DECIMAL_MASK);
 	}
 
 	void Registers::SetBits(bool condition, uint8_t bitMask) {

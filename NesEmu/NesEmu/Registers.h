@@ -32,10 +32,14 @@ namespace NesEmu {
 		bool Negative();
 
 		void SetNegative(int8_t data);
+		void SetNegative(bool set);
 		void SetZero(int8_t data);
+		void SetZero(bool set);
 		void SetCarry(int16_t data);
         void SetCarry(bool set);
 		void SetOverflow(bool set);
+		void SetInterrupt(bool set);
+		void SetDecimal(bool set);
 
 	private:
 		inline void SetBits(bool condition, uint8_t bitMask);

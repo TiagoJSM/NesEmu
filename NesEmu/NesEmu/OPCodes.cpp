@@ -87,8 +87,8 @@ void ADC_Helper(NesEmu::Registers& registers, uint8_t operand) {
 
 	registers.SetCarry(static_cast<int16_t>(result));
 	registers.SetOverflow(TestOverflow(operand, regA, registers.A));
-	registers.SetZero(result);
-	registers.SetNegative(result);
+	registers.SetZero(static_cast<int8_t>(result));
+	registers.SetNegative(static_cast<int8_t>(result));
 }
 
 void ADC_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
@@ -106,8 +106,8 @@ void ADC_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
 void AND_Helper(NesEmu::Registers& registers, uint8_t operand) {
 	registers.A = registers.A & operand;
 
-	registers.SetZero(registers.A);
-	registers.SetNegative(registers.A);
+	registers.SetZero(static_cast<int8_t>(registers.A));
+	registers.SetNegative(static_cast<int8_t>(registers.A));
 }
 
 void AND_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
@@ -126,8 +126,8 @@ void AND_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
 void EOR_Helper(NesEmu::Registers& registers, uint8_t operand) {
     registers.A = registers.A | operand;
 
-    registers.SetZero(registers.A);
-    registers.SetNegative(registers.A);
+    registers.SetZero(static_cast<int8_t>(registers.A));
+    registers.SetNegative(static_cast<int8_t>(registers.A));
 }
 
 void EOR_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
@@ -146,8 +146,8 @@ void DEC_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
     auto address = ZeroPage_Helper(registers, memory, offset);
     auto data = memory.GetByte(address);
     data--;
-    registers.SetZero(data);
-    registers.SetNegative(data);
+    registers.SetZero(static_cast<int8_t>(data));
+    registers.SetNegative(static_cast<int8_t>(data));
     memory.StoreByte(address, data);
 }
 
@@ -155,14 +155,19 @@ void DEC_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
     auto address = Absolute_Helper(registers, memory, offset);
     auto data = memory.GetByte(address);
     data--;
-    registers.SetZero(data);
-    registers.SetNegative(data);
+    registers.SetZero(static_cast<int8_t>(data));
+    registers.SetNegative(static_cast<int8_t>(data));
     memory.StoreByte(address, data);
 }
 
 uint8_t ASL_Helper(uint8_t value, bool& carry) {
-    carry = value & BIT_7_MASK != 0;
+    carry = (value & BIT_7_MASK) != 0;
     return value << 1;
+}
+
+uint8_t LSR_Helper(uint8_t value, bool& carry) {
+	carry = (value & BIT_0_MASK) != 0;
+	return value >> 1;
 }
 
 void ASL_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
@@ -171,8 +176,8 @@ void ASL_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
     auto value = memory.GetByte(address);
     value = ASL_Helper(value, carry);
     memory.StoreByte(address, value);
-    registers.SetZero(value);
-    registers.SetNegative(value);
+    registers.SetZero(static_cast<int8_t>(value));
+    registers.SetNegative(static_cast<int8_t>(value));
     registers.SetCarry(carry);
 }
 
@@ -182,9 +187,61 @@ void ASL_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
     auto value = memory.GetByte(address);
     value = ASL_Helper(value, carry);
     memory.StoreByte(address, value);
-    registers.SetZero(value);
-    registers.SetNegative(value);
+    registers.SetZero(static_cast<int8_t>(value));
+    registers.SetNegative(static_cast<int8_t>(value));
     registers.SetCarry(carry);
+}
+
+void LSR_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
+	bool carry;
+	auto address = ZeroPage_Helper(registers, memory, offset);
+	auto value = memory.GetByte(address);
+	value = LSR_Helper(value, carry);
+	memory.StoreByte(address, value);
+	registers.SetZero(static_cast<int8_t>(value));
+	registers.SetNegative(static_cast<int8_t>(value));
+	registers.SetCarry(carry);
+}
+
+void LSR_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
+	bool carry;
+	auto address = Absolute_Helper(registers, memory, offset);
+	auto value = memory.GetByte(address);
+	value = LSR_Helper(value, carry);
+	memory.StoreByte(address, value);
+	registers.SetZero(static_cast<int8_t>(value));
+	registers.SetNegative(static_cast<int8_t>(value));
+	registers.SetCarry(carry);
+}
+
+void CMP_Helper(NesEmu::Registers& registers, uint8_t registerValue, uint8_t operand) {
+	registers.SetCarry(registerValue >= operand);
+	registers.SetZero(registerValue == operand);
+	registers.SetNegative(!registers.Carry());
+}
+
+void CMP_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t registerValue, uint8_t offset = 0) {
+	auto address = ZeroPage_Helper(registers, memory, offset);
+	auto value = memory.GetByte(address);
+	CMP_Helper(registers, registerValue, value);
+}
+
+void CMP_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t registerValue, uint8_t offset = 0) {
+	auto address = Absolute_Helper(registers, memory, offset);
+	auto value = memory.GetByte(address);
+	CMP_Helper(registers, registerValue, value);
+}
+
+void CMP_Indirect_X_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t registerValue) {
+	auto address = GetIndirectXAddress(registers, memory);
+	auto value = memory.GetByte(address);
+	CMP_Helper(registers, registerValue, value);
+}
+
+void CMP_Indirect_Y_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t registerValue) {
+	auto address = GetIndirectYAddress(registers, memory);
+	auto value = memory.GetByte(address);
+	CMP_Helper(registers, registerValue, value);
 }
 
 // END HELPERS
@@ -453,8 +510,8 @@ void NesEmu::DEC_Absolute_X(Registers& registers, Memory& memory) {
 void NesEmu::ASL_Accumulator(Registers& registers, Memory& memory) {
     bool carry;
     registers.A = ASL_Helper(registers.A, carry);
-    registers.SetZero(registers.A);
-    registers.SetNegative(registers.A);
+    registers.SetZero(static_cast<int8_t>(registers.A));
+    registers.SetNegative(static_cast<int8_t>(registers.A));
     registers.SetCarry(carry);
 }
 
@@ -472,4 +529,115 @@ void NesEmu::ASL_Absolute(Registers& registers, Memory& memory) {
 
 void NesEmu::ASL_Absolute_X(Registers& registers, Memory& memory) {
     ASL_Absolute_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::LSR_Accumulator(Registers& registers, Memory& memory) {
+	bool carry;
+	registers.A = LSR_Helper(registers.A, carry);
+	registers.SetZero(static_cast<int8_t>(registers.A));
+	registers.SetNegative(static_cast<int8_t>(registers.A));
+	registers.SetCarry(carry);
+}
+
+void NesEmu::LSR_ZeroPage(Registers& registers, Memory& memory) {
+	LSR_ZeroPage_Helper(registers, memory);
+}
+
+void NesEmu::LSR_ZeroPage_X(Registers& registers, Memory& memory) {
+	LSR_ZeroPage_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::LSR_Absolute(Registers& registers, Memory& memory) {
+	LSR_Absolute_Helper(registers, memory);
+}
+
+void NesEmu::LSR_Absolute_X(Registers& registers, Memory& memory) {
+	LSR_Absolute_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::CLC(Registers& registers, Memory& memory) {
+	registers.SetCarry(false);
+}
+
+void NesEmu::SEC(Registers& registers, Memory& memory) {
+	registers.SetCarry(true);
+}
+
+void NesEmu::CLI(Registers& registers, Memory& memory) {
+	registers.SetInterrupt(false);
+}
+
+void NesEmu::SEI(Registers& registers, Memory& memory) {
+	registers.SetInterrupt(true);
+}
+
+void NesEmu::CLD(Registers& registers, Memory& memory) {
+	registers.SetDecimal(false);
+}
+
+void NesEmu::CLV(Registers& registers, Memory& memory) {
+	registers.SetOverflow(false);
+}
+
+void NesEmu::SED(Registers& registers, Memory& memory) {
+	registers.SetDecimal(true);
+}
+
+void NesEmu::CMP_Immediate(Registers& registers, Memory& memory) {
+	auto operand = memory.GetByte(registers.PC + 1);
+	CMP_Helper(registers, registers.A, operand);
+}
+
+void NesEmu::CMP_ZeroPage(Registers& registers, Memory& memory) {
+	CMP_ZeroPage_Helper(registers, memory, registers.A);
+}
+
+void NesEmu::CMP_ZeroPage_X(Registers& registers, Memory& memory) {
+	CMP_ZeroPage_Helper(registers, memory, registers.A, registers.X);
+}
+
+void NesEmu::CMP_Absolute(Registers& registers, Memory& memory) {
+	CMP_Absolute_Helper(registers, memory, registers.A);
+}
+
+void NesEmu::CMP_Absolute_X(Registers& registers, Memory& memory) {
+	CMP_Absolute_Helper(registers, memory, registers.A, registers.X);
+}
+
+void NesEmu::CMP_Absolute_Y(Registers& registers, Memory& memory) {
+	CMP_Absolute_Helper(registers, memory, registers.A, registers.Y);
+}
+
+void NesEmu::CMP_Indirect_X(Registers& registers, Memory& memory) {
+	CMP_Indirect_X_Helper(registers, memory, registers.A);
+}
+
+void NesEmu::CMP_Indirect_Y(Registers& registers, Memory& memory) {
+	CMP_Indirect_Y_Helper(registers, memory, registers.A);
+}
+
+void NesEmu::CPX_Immediate(Registers& registers, Memory& memory) {
+	auto operand = memory.GetByte(registers.PC + 1);
+	CMP_Helper(registers, registers.X, operand);
+}
+
+void NesEmu::CPX_ZeroPage(Registers& registers, Memory& memory) {
+	CMP_Absolute_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::CPX_Absolute(Registers& registers, Memory& memory) {
+	CMP_Absolute_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::CPY_Immediate(Registers& registers, Memory& memory) {
+	auto operand = memory.GetByte(registers.PC + 1);
+	CMP_Helper(registers, registers.Y, operand);
+}
+
+void NesEmu::CPY_ZeroPage(Registers& registers, Memory& memory) {
+	CMP_Absolute_Helper(registers, memory, registers.Y);
+}
+
+void NesEmu::CPY_Absolute(Registers& registers, Memory& memory) {
+	CMP_Absolute_Helper(registers, memory, registers.Y);
 }

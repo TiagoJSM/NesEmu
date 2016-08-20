@@ -97,6 +97,23 @@ namespace NesEmu {
 	void LSR_Absolute(Registers& registers, Memory& memory);
 	void LSR_Absolute_X(Registers& registers, Memory& memory);
 
+	void NOP(Registers& registers, Memory& memory);
+
+	void ORA_Immediate(Registers& registers, Memory& memory);
+	void ORA_ZeroPage(Registers& registers, Memory& memory);
+	void ORA_ZeroPage_X(Registers& registers, Memory& memory);
+	void ORA_Absolute(Registers& registers, Memory& memory);
+	void ORA_Absolute_X(Registers& registers, Memory& memory);
+	void ORA_Absolute_Y(Registers& registers, Memory& memory);
+	void ORA_Indirect_X(Registers& registers, Memory& memory);
+	void ORA_Indirect_Y(Registers& registers, Memory& memory);
+
+	void ROR_Accumulator(Registers& registers, Memory& memory);
+	void ROR_ZeroPage(Registers& registers, Memory& memory);
+	void ROR_ZeroPage_X(Registers& registers, Memory& memory);
+	void ROR_Absolute(Registers& registers, Memory& memory);
+	void ROR_Absolute_X(Registers& registers, Memory& memory);
+
 	void SEC(Registers& registers, Memory& memory);
 	void SED(Registers& registers, Memory& memory);
 	void SEI(Registers& registers, Memory& memory);

@@ -61,6 +61,17 @@ namespace NesEmu {
 	void DEC_Absolute(Registers& registers, Memory& memory);
 	void DEC_Absolute_X(Registers& registers, Memory& memory);
 
+	void DEX(Registers& registers, Memory& memory);
+	void DEY(Registers& registers, Memory& memory);
+
+	void INC_ZeroPage(Registers& registers, Memory& memory);
+	void INC_ZeroPage_X(Registers& registers, Memory& memory);
+	void INC_Absolute(Registers& registers, Memory& memory);
+	void INC_Absolute_X(Registers& registers, Memory& memory);
+
+	void INX(Registers& registers, Memory& memory);
+	void INY(Registers& registers, Memory& memory);
+
 	void EOR_Immediate(Registers& registers, Memory& memory);
 	void EOR_ZeroPage(Registers& registers, Memory& memory);
 	void EOR_ZeroPage_X(Registers& registers, Memory& memory);
@@ -107,6 +118,12 @@ namespace NesEmu {
 	void ORA_Absolute_Y(Registers& registers, Memory& memory);
 	void ORA_Indirect_X(Registers& registers, Memory& memory);
 	void ORA_Indirect_Y(Registers& registers, Memory& memory);
+
+	void ROL_Accumulator(Registers& registers, Memory& memory);
+	void ROL_ZeroPage(Registers& registers, Memory& memory);
+	void ROL_ZeroPage_X(Registers& registers, Memory& memory);
+	void ROL_Absolute(Registers& registers, Memory& memory);
+	void ROL_Absolute_X(Registers& registers, Memory& memory);
 
 	void ROR_Accumulator(Registers& registers, Memory& memory);
 	void ROR_ZeroPage(Registers& registers, Memory& memory);

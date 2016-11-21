@@ -160,6 +160,24 @@ void DEC_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
     memory.StoreByte(address, data);
 }
 
+void INC_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
+	auto address = ZeroPage_Helper(registers, memory, offset);
+	auto data = memory.GetByte(address);
+	data++;
+	registers.SetZero(static_cast<int8_t>(data));
+	registers.SetNegative(static_cast<int8_t>(data));
+	memory.StoreByte(address, data);
+}
+
+void INC_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
+	auto address = Absolute_Helper(registers, memory, offset);
+	auto data = memory.GetByte(address);
+	data++;
+	registers.SetZero(static_cast<int8_t>(data));
+	registers.SetNegative(static_cast<int8_t>(data));
+	memory.StoreByte(address, data);
+}
+
 uint8_t ASL_Helper(uint8_t value, bool& carry) {
     carry = (value & BIT_7_MASK) != 0;
     return value << 1;
@@ -261,6 +279,28 @@ void ORA_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
 	auto address = Absolute_Helper(registers, memory, offset);
 	auto value = memory.GetByte(address);
 	ORA_Helper(registers, value);
+}
+
+void ROL_Helper(NesEmu::Registers& registers, uint8_t value) {
+	auto carry = registers.Carry();
+	auto bit7 = (value & BIT_7_MASK) != 0;
+	auto result = (value << 1) & (carry << BIT_0_MASK);
+	registers.SetCarry(bit7);
+	registers.SetZero(result == 0);
+	registers.SetNegative(static_cast<int8_t>(result));
+	registers.A = result;
+}
+
+void ROL_ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
+	auto address = ZeroPage_Helper(registers, memory, offset);
+	auto value = memory.GetByte(address);
+	ROL_Helper(registers, value);
+}
+
+void ROL_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, uint8_t offset = 0) {
+	auto address = Absolute_Helper(registers, memory, offset);
+	auto value = memory.GetByte(address);
+	ROL_Helper(registers, value);
 }
 
 void ROR_Helper(NesEmu::Registers& registers, uint8_t value) {
@@ -548,6 +588,43 @@ void NesEmu::DEC_Absolute_X(Registers& registers, Memory& memory) {
     DEC_Absolute_Helper(registers, memory, registers.X);
 }
 
+void NesEmu::DEX(Registers& registers, Memory& memory) {
+	registers.X--;
+	registers.SetNegative(static_cast<int8_t>(registers.X));
+	registers.SetZero(static_cast<int8_t>(registers.X));
+}
+
+void NesEmu::DEY(Registers& registers, Memory& memory) {
+	registers.Y--;
+	registers.SetNegative(static_cast<int8_t>(registers.Y));
+	registers.SetZero(static_cast<int8_t>(registers.Y));
+}
+
+void NesEmu::INC_ZeroPage(Registers& registers, Memory& memory) {
+	INC_ZeroPage_Helper(registers, memory);
+}
+void NesEmu::INC_ZeroPage_X(Registers& registers, Memory& memory) {
+	INC_ZeroPage_Helper(registers, memory, registers.X);
+}
+void NesEmu::INC_Absolute(Registers& registers, Memory& memory) {
+	INC_Absolute_Helper(registers, memory);
+}
+void NesEmu::INC_Absolute_X(Registers& registers, Memory& memory) {
+	INC_Absolute_Helper(registers, memory, registers.X);
+}
+
+void  NesEmu::INX(Registers& registers, Memory& memory) {
+	registers.X++;
+	registers.SetNegative(static_cast<int8_t>(registers.X));
+	registers.SetZero(static_cast<int8_t>(registers.X));
+}
+
+void  NesEmu::INY(Registers& registers, Memory& memory) {
+	registers.Y++;
+	registers.SetNegative(static_cast<int8_t>(registers.Y));
+	registers.SetZero(static_cast<int8_t>(registers.Y));
+}
+
 void NesEmu::ASL_Accumulator(Registers& registers, Memory& memory) {
     bool carry;
     registers.A = ASL_Helper(registers.A, carry);
@@ -720,6 +797,26 @@ void NesEmu::ORA_Indirect_Y(Registers& registers, Memory& memory) {
 	auto address = GetIndirectYAddress(registers, memory);
 	auto value = memory.GetByte(address);
 	ORA_Helper(registers, value);
+}
+
+void NesEmu::ROL_Accumulator(Registers& registers, Memory& memory) {
+	ROL_Helper(registers, registers.A);
+}
+
+void NesEmu::ROL_ZeroPage(Registers& registers, Memory& memory) {
+	ROL_ZeroPage_Helper(registers, memory);
+}
+
+void NesEmu::ROL_ZeroPage_X(Registers& registers, Memory& memory) {
+	ROL_ZeroPage_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::ROL_Absolute(Registers& registers, Memory& memory) {
+	ROL_Absolute_Helper(registers, memory);
+}
+
+void NesEmu::ROL_Absolute_X(Registers& registers, Memory& memory) {
+	ROL_Absolute_Helper(registers, memory, registers.X);
 }
 
 void NesEmu::ROR_Accumulator(Registers& registers, Memory& memory) {

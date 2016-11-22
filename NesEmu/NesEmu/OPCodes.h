@@ -150,4 +150,11 @@ namespace NesEmu {
 	void STY_ZeroPage(Registers& registers, Memory& memory);
 	void STY_ZeroPage_X(Registers& registers, Memory& memory);
 	void STY_Absolute(Registers& registers, Memory& memory);
+
+	void TAX(Registers& registers, Memory& memory);
+	void TAY(Registers& registers, Memory& memory);
+	void TSX(Registers& registers, Memory& memory);
+	void TXA(Registers& registers, Memory& memory);
+	void TXS(Registers& registers, Memory& memory);
+	void TYA(Registers& registers, Memory& memory);
 }

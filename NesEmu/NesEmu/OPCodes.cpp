@@ -325,6 +325,12 @@ void ROR_Absolute_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, u
 	ROR_Helper(registers, value);
 }
 
+void Transfer_Helper(NesEmu::Registers& registers, uint8_t registerValue) {
+	auto value = static_cast<int8_t>(registerValue);
+	registers.SetNegative(value);
+	registers.SetZero(value);
+}
+
 // END HELPERS
 
 void NesEmu::LDA_Immediate(Registers& registers, Memory& memory) {
@@ -837,4 +843,34 @@ void NesEmu::ROR_Absolute(Registers& registers, Memory& memory) {
 
 void NesEmu::ROR_Absolute_X(Registers& registers, Memory& memory) {
 	ROR_Absolute_Helper(registers, memory, registers.X);
+}
+
+void NesEmu::TAX(Registers& registers, Memory& memory) {
+	registers.X = registers.A;
+	Transfer_Helper(registers, registers.X);
+}
+
+void NesEmu::TAY(Registers& registers, Memory& memory) {
+	registers.Y = registers.A;
+	Transfer_Helper(registers, registers.Y);
+}
+
+void NesEmu::TSX(Registers& registers, Memory& memory) {
+	registers.X = registers.S;
+	Transfer_Helper(registers, registers.X);
+}
+
+void NesEmu::TXA(Registers& registers, Memory& memory) {
+	registers.A = registers.X;
+	Transfer_Helper(registers, registers.A);
+}
+
+void NesEmu::TXS(Registers& registers, Memory& memory) {
+	registers.S = registers.X;
+	Transfer_Helper(registers, registers.S);
+}
+
+void NesEmu::TYA(Registers& registers, Memory& memory) {
+	registers.A = registers.Y;
+	Transfer_Helper(registers, registers.A);
 }

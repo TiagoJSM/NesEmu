@@ -131,6 +131,15 @@ namespace NesEmu {
 	void ROR_Absolute(Registers& registers, Memory& memory);
 	void ROR_Absolute_X(Registers& registers, Memory& memory);
 
+	void SBC_Immediate(Registers& registers, Memory& memory);
+	void SBC_ZeroPage(Registers& registers, Memory& memory);
+	void SBC_ZeroPage_X(Registers& registers, Memory& memory);
+	void SBC_Absolute(Registers& registers, Memory& memory);
+	void SBC_Absolute_X(Registers& registers, Memory& memory);
+	void SBC_Absolute_Y(Registers& registers, Memory& memory);
+	void SBC_Indirect_X(Registers& registers, Memory& memory);
+	void SBC_Indirect_Y(Registers& registers, Memory& memory);
+
 	void SEC(Registers& registers, Memory& memory);
 	void SED(Registers& registers, Memory& memory);
 	void SEI(Registers& registers, Memory& memory);

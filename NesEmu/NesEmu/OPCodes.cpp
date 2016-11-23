@@ -359,6 +359,12 @@ void Transfer_Helper(NesEmu::Registers& registers, uint8_t registerValue) {
 	registers.SetZero(value);
 }
 
+void Branch_Helper(NesEmu::Registers& registers, NesEmu::Memory& memory, bool doBranch) {
+	auto value = memory.GetByte(registers.PC + 1);
+	registers.PC -= value;
+	registers.PC -= 2; //ToDo: investigate if this is correct
+}
+
 // END HELPERS
 
 void NesEmu::LDA_Immediate(Registers& registers, Memory& memory) {
@@ -567,6 +573,38 @@ void NesEmu::AND_Indirect_Y(Registers& registers, Memory& memory) {
 	auto address = GetIndirectYAddress(registers, memory);
 	auto value = memory.GetByte(address);
 	AND_Helper(registers, value);
+}
+
+void NesEmu::BCC(Registers& registers, Memory& memory) {
+	Branch_Helper(registers, memory, !registers.Carry());
+}
+
+void NesEmu::BCS(Registers& registers, Memory& memory) {
+	Branch_Helper(registers, memory, registers.Carry());
+}
+
+void NesEmu::BEQ(Registers& registers, Memory& memory) {
+	Branch_Helper(registers, memory, registers.Zero());
+}
+
+void NesEmu::BMI(Registers& registers, Memory& memory) {
+	Branch_Helper(registers, memory, registers.Negative());
+}
+
+void NesEmu::BNE(Registers& registers, Memory& memory) {
+	Branch_Helper(registers, memory, !registers.Zero());
+}
+
+void NesEmu::BPL(Registers& registers, Memory& memory) {
+	Branch_Helper(registers, memory, !registers.Negative() && !registers.Zero()); //ToDo: check this
+}
+
+void NesEmu::BVC(Registers& registers, Memory& memory) {
+	Branch_Helper(registers, memory, !registers.Overflow());
+}
+
+void NesEmu::BVS(Registers& registers, Memory& memory) {
+	Branch_Helper(registers, memory, registers.Overflow());
 }
 
 void NesEmu::EOR_Immediate(Registers& registers, Memory& memory) {

@@ -11,6 +11,7 @@
 		memory.data[1] = -1;
 
 		NesEmu::LDA_Immediate(registers, memory);
+
 		return 0;
 	}
 //}

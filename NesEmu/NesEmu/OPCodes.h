@@ -34,6 +34,15 @@ namespace NesEmu {
 	void ASL_Absolute(Registers& registers, Memory& memory);
 	void ASL_Absolute_X(Registers& registers, Memory& memory);
 
+	void BCC(Registers& registers, Memory& memory);
+	void BCS(Registers& registers, Memory& memory);
+	void BEQ(Registers& registers, Memory& memory);
+	void BMI(Registers& registers, Memory& memory);
+	void BNE(Registers& registers, Memory& memory);
+	void BPL(Registers& registers, Memory& memory);
+	void BVC(Registers& registers, Memory& memory);
+	void BVS(Registers& registers, Memory& memory);
+
 	void CLC(Registers& registers, Memory& memory);
 	void CLD(Registers& registers, Memory& memory);
 	void CLI(Registers& registers, Memory& memory);

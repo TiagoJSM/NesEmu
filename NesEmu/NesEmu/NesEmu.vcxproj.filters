@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\AddressResourceMappings">
+      <UniqueIdentifier>{66b61c6f-0ba2-4b84-8c9d-4a96b589a7b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AddressResourceMappings">
+      <UniqueIdentifier>{a940fc54-d606-47f6-a03b-846d5a0f195a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Registers.h">
@@ -33,6 +39,15 @@
     <ClInclude Include="Macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MemoryMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAddressResourceMapping.h">
+      <Filter>Header Files\AddressResourceMappings</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryResourceMapping.h">
+      <Filter>Header Files\AddressResourceMappings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Registers.cpp">
@@ -49,6 +64,15 @@
     </ClCompile>
     <ClCompile Include="UtilitaryFunctions.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAddressResourceMapping.cpp">
+      <Filter>Source Files\AddressResourceMappings</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryResourceMapping.cpp">
+      <Filter>Source Files\AddressResourceMappings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

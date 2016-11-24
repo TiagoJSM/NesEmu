@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-#define KBYTE 1024
+#include "Macros.h"
 
 namespace NesEmu{
 	struct Memory {

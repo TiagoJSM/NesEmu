@@ -673,6 +673,15 @@ void NesEmu::EOR_Indirect_Y(Registers& registers, MemoryMap& memoryMap) {
     EOR_Helper(registers, value);
 }
 
+void NesEmu::JMP_Absolute(Registers& registers, MemoryMap& memoryMap) {
+	registers.PC = Absolute_Helper(registers, memoryMap, 0);
+}
+
+void NesEmu::JMP_Indirect(Registers& registers, MemoryMap& memoryMap) {
+	auto indirectAddress = Absolute_Helper(registers, memoryMap, 0);
+	registers.PC = memoryMap.GetWord(indirectAddress);
+}
+
 void NesEmu::DEC_ZeroPage(Registers& registers, MemoryMap& memoryMap) {
     DEC_ZeroPage_Helper(registers, memoryMap);
 }

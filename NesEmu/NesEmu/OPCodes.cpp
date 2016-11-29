@@ -365,6 +365,23 @@ void Branch_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, b
 	registers.PC -= 2; //ToDo: investigate if this is correct
 }
 
+void BIT_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, uint8_t value) {
+	registers.SetZero(static_cast<int8_t>(value & registers.A));
+	registers.SetNegative(static_cast<int8_t>(value & BIT_7_MASK));
+	registers.SetOverflow(static_cast<int8_t>(value & BIT_6_MASK));
+}
+
+void Push_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, uint8_t value) {
+	memoryMap.StoreByte(registers.S, value);
+	registers.S--;
+}
+
+uint8_t Pull_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
+	auto value = memoryMap.GetByte(registers.S);
+	registers.S++;
+	return value;
+}
+
 // END HELPERS
 
 void NesEmu::LDA_Immediate(Registers& registers, MemoryMap& memoryMap) {
@@ -605,6 +622,18 @@ void NesEmu::BVC(Registers& registers, MemoryMap& memoryMap) {
 
 void NesEmu::BVS(Registers& registers, MemoryMap& memoryMap) {
 	Branch_Helper(registers, memoryMap, registers.Overflow());
+}
+
+void NesEmu::BIT_ZeroPage(Registers& registers, MemoryMap& memoryMap) {
+	auto address = ZeroPage_Helper(registers, memoryMap, 0);
+	auto value = memoryMap.GetByte(address);
+	BIT_Helper(registers, memoryMap, value);
+}
+
+void NesEmu::BIT_Absolute(Registers& registers, MemoryMap& memoryMap) {
+	auto address = Absolute_Helper(registers, memoryMap, 0);
+	auto value = memoryMap.GetByte(address);
+	BIT_Helper(registers, memoryMap, value);
 }
 
 void NesEmu::EOR_Immediate(Registers& registers, MemoryMap& memoryMap) {
@@ -872,6 +901,22 @@ void NesEmu::ORA_Indirect_Y(Registers& registers, MemoryMap& memoryMap) {
 	auto address = GetIndirectYAddress(registers, memoryMap);
 	auto value = memoryMap.GetByte(address);
 	ORA_Helper(registers, value);
+}
+
+void NesEmu::PHA(Registers& registers, MemoryMap& memoryMap) {
+	Push_Helper(registers, memoryMap, registers.A);
+}
+
+void NesEmu::PLA(Registers& registers, MemoryMap& memoryMap) {
+	registers.A = Pull_Helper(registers, memoryMap);
+}
+
+void NesEmu::PHP(Registers& registers, MemoryMap& memoryMap) {
+	Push_Helper(registers, memoryMap, registers.P);
+}
+
+void NesEmu::PLP(Registers& registers, MemoryMap& memoryMap) {
+	registers.P = Pull_Helper(registers, memoryMap);
 }
 
 void NesEmu::ROL_Accumulator(Registers& registers, MemoryMap& memoryMap) {

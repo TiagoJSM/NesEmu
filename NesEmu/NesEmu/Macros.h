@@ -1,7 +1,13 @@
 #pragma once
 
 #define MAX_BYTE 0xFF
-#define BIT_7_MASK 0b1000000
-#define BIT_0_MASK 0b0000001
+#define BIT_7_MASK 0b10000000
+#define BIT_6_MASK 0b01000000
+#define BIT_5_MASK 0b00100000
+#define BIT_4_MASK 0b00010000
+#define BIT_3_MASK 0b00001000
+#define BIT_2_MASK 0b00000100
+#define BIT_1_MASK 0b00000010
+#define BIT_0_MASK 0b00000001
 
 #define KBYTE 1024

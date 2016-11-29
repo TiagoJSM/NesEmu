@@ -19,7 +19,7 @@ namespace NesEmu {
     // S - Sign flag
 	class Registers {
 	public:
-		uint8_t A, X, Y, S, P;
+		uint8_t A, X, Y, S, P; //s = stack pointer, P = processor status
 		uint16_t PC;
 
 		Registers();

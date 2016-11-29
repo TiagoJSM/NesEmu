@@ -43,6 +43,9 @@ namespace NesEmu {
 	void BVC(Registers& registers, MemoryMap& memoryMap);
 	void BVS(Registers& registers, MemoryMap& memoryMap);
 
+	void BIT_ZeroPage(Registers& registers, MemoryMap& memoryMap);
+	void BIT_Absolute(Registers& registers, MemoryMap& memoryMap);
+
 	void CLC(Registers& registers, MemoryMap& memoryMap);
 	void CLD(Registers& registers, MemoryMap& memoryMap);
 	void CLI(Registers& registers, MemoryMap& memoryMap);
@@ -127,6 +130,11 @@ namespace NesEmu {
 	void ORA_Absolute_Y(Registers& registers, MemoryMap& memoryMap);
 	void ORA_Indirect_X(Registers& registers, MemoryMap& memoryMap);
 	void ORA_Indirect_Y(Registers& registers, MemoryMap& memoryMap);
+
+	void PHA(Registers& registers, MemoryMap& memoryMap);
+	void PLA(Registers& registers, MemoryMap& memoryMap);
+	void PHP(Registers& registers, MemoryMap& memoryMap);
+	void PLP(Registers& registers, MemoryMap& memoryMap);
 
 	void ROL_Accumulator(Registers& registers, MemoryMap& memoryMap);
 	void ROL_ZeroPage(Registers& registers, MemoryMap& memoryMap);

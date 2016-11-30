@@ -153,6 +153,7 @@ namespace NesEmu {
 	void ROR_Absolute(Registers& registers, MemoryMap& memoryMap);
 	void ROR_Absolute_X(Registers& registers, MemoryMap& memoryMap);
 
+	void RTI(Registers& registers, MemoryMap& memoryMap);
 	void RTS(Registers& registers, MemoryMap& memoryMap);
 
 	void SBC_Immediate(Registers& registers, MemoryMap& memoryMap);

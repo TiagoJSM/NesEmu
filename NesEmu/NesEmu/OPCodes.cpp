@@ -987,6 +987,11 @@ void NesEmu::ROR_Absolute_X(Registers& registers, MemoryMap& memoryMap) {
 	ROR_Absolute_Helper(registers, memoryMap, registers.X);
 }
 
+void NesEmu::RTI(Registers& registers, MemoryMap& memoryMap) {
+	registers.P = Pull_Byte_Helper(registers, memoryMap);
+	registers.PC = Pull_Word_Helper(registers, memoryMap);
+}
+
 void NesEmu::RTS(Registers& registers, MemoryMap& memoryMap) {
 	uint16_t value = Pull_Word_Helper(registers, memoryMap) + 1;
 	registers.PC = value;

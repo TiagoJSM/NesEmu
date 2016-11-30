@@ -20,6 +20,10 @@ namespace NesEmu{
 		_memory->StoreByte(GetAddressWithoutMirroring(address), byte);
 	}
 
+	void MemoryResourceMapping::StoreWord(uint16_t address, uint16_t word) {
+		_memory->StoreWord(GetAddressWithoutMirroring(address), word);
+	}
+
 	uint16_t MemoryResourceMapping::GetAddressWithoutMirroring(uint16_t address) {
 		return address % RamMemoryBlockSize;
 	}

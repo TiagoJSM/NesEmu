@@ -96,6 +96,8 @@ namespace NesEmu {
 	void JMP_Absolute(Registers& registers, MemoryMap& memoryMap);
 	void JMP_Indirect(Registers& registers, MemoryMap& memoryMap);
 
+	void JSR(Registers& registers, MemoryMap& memoryMap);
+
 	void LDA_Immediate(Registers& registers, MemoryMap& memoryMap);
 	void LDA_ZeroPage(Registers& registers, MemoryMap& memoryMap);
 	void LDA_ZeroPage_X(Registers& registers, MemoryMap& memoryMap);
@@ -150,6 +152,8 @@ namespace NesEmu {
 	void ROR_ZeroPage_X(Registers& registers, MemoryMap& memoryMap);
 	void ROR_Absolute(Registers& registers, MemoryMap& memoryMap);
 	void ROR_Absolute_X(Registers& registers, MemoryMap& memoryMap);
+
+	void RTS(Registers& registers, MemoryMap& memoryMap);
 
 	void SBC_Immediate(Registers& registers, MemoryMap& memoryMap);
 	void SBC_ZeroPage(Registers& registers, MemoryMap& memoryMap);

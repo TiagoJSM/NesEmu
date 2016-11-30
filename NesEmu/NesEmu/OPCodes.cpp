@@ -376,9 +376,20 @@ void Push_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, uin
 	registers.S--;
 }
 
-uint8_t Pull_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
+void Push_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, uint16_t value) {
+	memoryMap.StoreWord(registers.S, value);
+	registers.S -= 2;
+}
+
+uint8_t Pull_Byte_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
 	auto value = memoryMap.GetByte(registers.S);
 	registers.S++;
+	return value;
+}
+
+uint16_t Pull_Word_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
+	auto value = memoryMap.GetWord(registers.S);
+	registers.S += 2;
 	return value;
 }
 
@@ -682,6 +693,14 @@ void NesEmu::JMP_Indirect(Registers& registers, MemoryMap& memoryMap) {
 	registers.PC = memoryMap.GetWord(indirectAddress);
 }
 
+void NesEmu::JSR(Registers& registers, MemoryMap& memoryMap) {
+	auto operand = memoryMap.GetWord(registers.PC + 1);
+	uint16_t value = registers.PC + 2; //point to the address BEFORE the NEXT instruction
+	Push_Helper(registers, memoryMap, value);
+	registers.PC = operand;
+}
+
+
 void NesEmu::DEC_ZeroPage(Registers& registers, MemoryMap& memoryMap) {
     DEC_ZeroPage_Helper(registers, memoryMap);
 }
@@ -917,7 +936,7 @@ void NesEmu::PHA(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::PLA(Registers& registers, MemoryMap& memoryMap) {
-	registers.A = Pull_Helper(registers, memoryMap);
+	registers.A = Pull_Byte_Helper(registers, memoryMap);
 }
 
 void NesEmu::PHP(Registers& registers, MemoryMap& memoryMap) {
@@ -925,7 +944,7 @@ void NesEmu::PHP(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::PLP(Registers& registers, MemoryMap& memoryMap) {
-	registers.P = Pull_Helper(registers, memoryMap);
+	registers.P = Pull_Byte_Helper(registers, memoryMap);
 }
 
 void NesEmu::ROL_Accumulator(Registers& registers, MemoryMap& memoryMap) {
@@ -966,6 +985,11 @@ void NesEmu::ROR_Absolute(Registers& registers, MemoryMap& memoryMap) {
 
 void NesEmu::ROR_Absolute_X(Registers& registers, MemoryMap& memoryMap) {
 	ROR_Absolute_Helper(registers, memoryMap, registers.X);
+}
+
+void NesEmu::RTS(Registers& registers, MemoryMap& memoryMap) {
+	uint16_t value = Pull_Word_Helper(registers, memoryMap) + 1;
+	registers.PC = value;
 }
 
 void NesEmu::SBC_Immediate(Registers& registers, MemoryMap& memoryMap) {

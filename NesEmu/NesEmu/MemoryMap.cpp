@@ -23,6 +23,9 @@ namespace NesEmu {
 	void MemoryMap::StoreByte(uint16_t address, uint8_t byte) {
 		GetResourceMappingFor(address)->StoreByte(address, byte);
 	}
+	void MemoryMap::StoreWord(uint16_t address, uint16_t word) {
+		GetResourceMappingFor(address)->StoreWord(address, word);
+	}
 
 	BaseAddressResourceMapping* MemoryMap::GetResourceMappingFor(uint16_t address) {
 		for (auto iterator = _resourceMappings.begin(); iterator != _resourceMappings.end(); iterator++) {

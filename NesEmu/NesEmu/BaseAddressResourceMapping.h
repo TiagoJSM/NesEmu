@@ -12,6 +12,7 @@ namespace NesEmu {
 		virtual uint8_t GetByte(uint16_t address) = 0;
 		virtual uint16_t GetWord(uint16_t address) = 0;
 		virtual void StoreByte(uint16_t address, uint8_t byte) = 0;
+		virtual void StoreWord(uint16_t address, uint16_t word) = 0;
 	private:
 		uint16_t _minAddress; 
 		uint16_t _maxAddress;

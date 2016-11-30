@@ -14,4 +14,9 @@ namespace NesEmu {
 	void Memory::StoreByte(uint16_t address, uint8_t byte) {
 		this->data[address] = byte;
 	}
+
+	void Memory::StoreWord(uint16_t address, uint16_t word) {
+		this->data[address + 1] = (word >> sizeof(uint8_t));
+		this->data[address] = word;
+	}
 }

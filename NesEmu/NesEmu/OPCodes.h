@@ -10,6 +10,8 @@
 //https://skilldrick.github.io/easy6502/
 
 namespace NesEmu {
+	typedef void(*OpCode)(Registers&, MemoryMap&);
+
 	void ADC_Immediate(Registers& registers, MemoryMap& memoryMapMap);
 	void ADC_ZeroPage(Registers& registers, MemoryMap& memoryMap);
 	void ADC_ZeroPage_X(Registers& registers, MemoryMap& memoryMap);
@@ -42,6 +44,8 @@ namespace NesEmu {
 	void BPL(Registers& registers, MemoryMap& memoryMap);
 	void BVC(Registers& registers, MemoryMap& memoryMap);
 	void BVS(Registers& registers, MemoryMap& memoryMap);
+
+	void BRK(Registers& registers, MemoryMap& memoryMap);
 
 	void BIT_ZeroPage(Registers& registers, MemoryMap& memoryMap);
 	void BIT_Absolute(Registers& registers, MemoryMap& memoryMap);

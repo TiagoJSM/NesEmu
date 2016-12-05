@@ -635,6 +635,10 @@ void NesEmu::BVS(Registers& registers, MemoryMap& memoryMap) {
 	Branch_Helper(registers, memoryMap, registers.Overflow());
 }
 
+void NesEmu::BRK(Registers& registers, MemoryMap& memoryMap) {
+	//ToDo: implement
+}
+
 void NesEmu::BIT_ZeroPage(Registers& registers, MemoryMap& memoryMap) {
 	auto address = ZeroPage_Helper(registers, memoryMap, 0);
 	auto value = memoryMap.GetByte(address);

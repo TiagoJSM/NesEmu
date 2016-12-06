@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\InstructionDescriptors">
+      <UniqueIdentifier>{cc536f81-23c2-4475-a3ea-d3bf79aa5dd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InstructionDescriptors">
+      <UniqueIdentifier>{0e0ff850-f809-4ca3-9333-818b34c2a444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IntructionParsers">
+      <UniqueIdentifier>{ef3fdb04-2354-4620-8310-0a195139811c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IntructionParsers">
+      <UniqueIdentifier>{10af356a-af72-4248-af76-20a04ca15292}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AssemblyModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseInstructionParser.h">
+      <Filter>Header Files\IntructionParsers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyModule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

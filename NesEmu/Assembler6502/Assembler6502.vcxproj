@@ -145,12 +145,20 @@
     <ClInclude Include="AssemblyModule.h" />
     <ClInclude Include="BaseInstructionDescriptor.h" />
     <ClInclude Include="BaseInstructionParser.h" />
+    <ClInclude Include="ParameterlessInstructionDescriptor.h" />
+    <ClInclude Include="ParameterlessInstructionParser.h" />
+    <ClInclude Include="ZeroPageInstructionDescriptor.h" />
+    <ClInclude Include="ZeroPageInstructionParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyModule.cpp" />
     <ClCompile Include="BaseInstructionDescriptor.cpp" />
     <ClCompile Include="BaseInstructionParser.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ParameterlessInstructionDescriptor.cpp" />
+    <ClCompile Include="ParameterlessInstructionParser.cpp" />
+    <ClCompile Include="ZeroPageInstructionDescriptor.cpp" />
+    <ClCompile Include="ZeroPageInstructionParser.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

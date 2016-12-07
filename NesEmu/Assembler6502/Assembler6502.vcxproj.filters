@@ -36,6 +36,18 @@
     <ClInclude Include="BaseInstructionParser.h">
       <Filter>Header Files\IntructionParsers</Filter>
     </ClInclude>
+    <ClInclude Include="ParameterlessInstructionParser.h">
+      <Filter>Header Files\IntructionParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ParameterlessInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="ZeroPageInstructionParser.h">
+      <Filter>Header Files\IntructionParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ZeroPageInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyModule.cpp">
@@ -49,6 +61,18 @@
     </ClCompile>
     <ClCompile Include="BaseInstructionParser.cpp">
       <Filter>Source Files\IntructionParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ParameterlessInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ParameterlessInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="ZeroPageInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ZeroPageInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

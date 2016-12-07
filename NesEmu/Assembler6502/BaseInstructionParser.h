@@ -11,7 +11,7 @@ namespace Assembler6502 {
 	public:
 		BaseInstructionParser(regex intructionFormat);
 
-		bool CanParse(const string& intruction);
+		virtual bool CanParse(const string& intruction);
 		virtual BaseInstructionDescriptor* Parse(const string& intruction) = 0;
 	private:
 		regex _intructionFormat;

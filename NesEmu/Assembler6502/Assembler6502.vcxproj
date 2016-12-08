@@ -145,10 +145,14 @@
     <ClInclude Include="AssemblyModule.h" />
     <ClInclude Include="BaseInstructionDescriptor.h" />
     <ClInclude Include="BaseInstructionParser.h" />
+    <ClInclude Include="BaseZeroPageInstructionParser.h" />
+    <ClInclude Include="InstructionToken.h" />
     <ClInclude Include="ParameterlessInstructionDescriptor.h" />
     <ClInclude Include="ParameterlessInstructionParser.h" />
     <ClInclude Include="ZeroPageInstructionDescriptor.h" />
     <ClInclude Include="ZeroPageInstructionParser.h" />
+    <ClInclude Include="ZeroPageXInstructionDescriptor.h" />
+    <ClInclude Include="ZeroPageXInstructionParser.h" />
     <ClInclude Include="ZeroPageYInstructionDescriptor.h" />
     <ClInclude Include="ZeroPageYInstructionParser.h" />
   </ItemGroup>
@@ -156,11 +160,14 @@
     <ClCompile Include="AssemblyModule.cpp" />
     <ClCompile Include="BaseInstructionDescriptor.cpp" />
     <ClCompile Include="BaseInstructionParser.cpp" />
+    <ClCompile Include="InstructionToken.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ParameterlessInstructionDescriptor.cpp" />
     <ClCompile Include="ParameterlessInstructionParser.cpp" />
     <ClCompile Include="ZeroPageInstructionDescriptor.cpp" />
     <ClCompile Include="ZeroPageInstructionParser.cpp" />
+    <ClCompile Include="ZeroPageXInstructionDescriptor.cpp" />
+    <ClCompile Include="ZeroPageXInstructionParser.cpp" />
     <ClCompile Include="ZeroPageYInstructionDescriptor.cpp" />
     <ClCompile Include="ZeroPageYInstructionParser.cpp" />
   </ItemGroup>

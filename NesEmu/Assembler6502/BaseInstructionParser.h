@@ -7,6 +7,7 @@
 #include <string>
 
 #include "BaseInstructionDescriptor.h"
+#include "InstructionToken.h"
 
 using namespace std;
 
@@ -16,10 +17,11 @@ namespace Assembler6502 {
 		BaseInstructionParser(regex intructionFormat);
 
 		virtual bool CanParse(const string& intruction);
-		virtual BaseInstructionDescriptor* Parse(const string& intruction) = 0;
+		virtual BaseInstructionDescriptor* Parse(const string& intruction);
 	protected:
 		regex GetInstructionFormat();
-		vector<string> Tokenize(const string& input, const string& delimiters);
+		vector<InstructionToken> Tokenize(const string& input, const string& delimiters);
+		virtual BaseInstructionDescriptor* DoParse(const string& intruction) = 0;
 	private:
 		regex _intructionFormat;
 	};

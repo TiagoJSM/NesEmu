@@ -1,14 +1,12 @@
 #pragma once
 
-#include "BaseInstructionParser.h"
+#include "BaseZeroPageInstructionParser.h"
 #include "ZeroPageInstructionDescriptor.h"
 
 namespace Assembler6502 {
 
-	class ZeroPageInstructionParser : public BaseInstructionParser {
+	class ZeroPageInstructionParser : public BaseZeroPageInstructionParser<ZeroPageInstructionDescriptor> {
 	public:
 		ZeroPageInstructionParser();
-
-		BaseInstructionDescriptor* Parse(const string& intruction) override;
 	};
 }

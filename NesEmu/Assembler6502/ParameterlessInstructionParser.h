@@ -8,7 +8,7 @@ namespace Assembler6502 {
 	class ParameterlessInstructionParser : public BaseInstructionParser {
 	public:
 		ParameterlessInstructionParser();
-
-		BaseInstructionDescriptor* Parse(const string& intruction) override;
+	protected:
+		BaseInstructionDescriptor* DoParse(const string& intruction) override;
 	};
 }

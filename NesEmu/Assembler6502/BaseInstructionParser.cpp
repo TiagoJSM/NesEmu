@@ -8,25 +8,37 @@ namespace Assembler6502 {
 		return regex_match(intruction, _intructionFormat);
 	}
 
+	BaseInstructionDescriptor* BaseInstructionParser::Parse(const string& intruction) {
+		if (CanParse(intruction)) {
+			return DoParse(intruction);
+		}
+		return nullptr;
+	}
+
 	regex BaseInstructionParser::GetInstructionFormat() {
 		return _intructionFormat;
 	}
 
-	vector<string> BaseInstructionParser::Tokenize(const string& input, const string& delimiters) {
+	vector<InstructionToken> BaseInstructionParser::Tokenize(const string& input, const string& delimiters) {
 		stringstream stringStream(input);
-		vector<string> result;
+		vector<InstructionToken> result;
 		string line;
 		while (getline(stringStream, line))
 		{
 			size_t prev = 0, pos;
 			while ((pos = line.find_first_of(delimiters, prev)) != std::string::npos)
 			{
-				if (pos > prev)
-					result.push_back(line.substr(prev, pos - prev));
+				if (pos > prev) {
+
+					result.push_back(InstructionToken(line.substr(prev, pos - prev)));
+				}
+					
 				prev = pos + 1;
 			}
-			if (prev < line.length())
-				result.push_back(line.substr(prev, std::string::npos));
+			if (prev < line.length()) {
+				result.push_back(InstructionToken(line.substr(prev, std::string::npos)));
+			}
+				
 		}
 		return result;
 	}

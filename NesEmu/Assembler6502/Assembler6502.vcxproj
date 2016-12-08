@@ -142,9 +142,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AbsoluteInstructionDescriptor.h" />
+    <ClInclude Include="AbsoluteInstructionParser.h" />
     <ClInclude Include="AssemblyModule.h" />
+    <ClInclude Include="BaseAbsoluteInstructionDescriptor.h" />
+    <ClInclude Include="BaseAbsoluteInstructionParser.h" />
     <ClInclude Include="BaseInstructionDescriptor.h" />
     <ClInclude Include="BaseInstructionParser.h" />
+    <ClInclude Include="BaseZeroPageInstructionDescriptor.h" />
     <ClInclude Include="BaseZeroPageInstructionParser.h" />
     <ClInclude Include="InstructionToken.h" />
     <ClInclude Include="ParameterlessInstructionDescriptor.h" />
@@ -157,9 +162,13 @@
     <ClInclude Include="ZeroPageYInstructionParser.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbsoluteInstructionDescriptor.cpp" />
+    <ClCompile Include="AbsoluteInstructionParser.cpp" />
     <ClCompile Include="AssemblyModule.cpp" />
+    <ClCompile Include="BaseAbsoluteInstructionDescriptor.cpp" />
     <ClCompile Include="BaseInstructionDescriptor.cpp" />
     <ClCompile Include="BaseInstructionParser.cpp" />
+    <ClCompile Include="BaseZeroPageInstructionDescriptor.cpp" />
     <ClCompile Include="InstructionToken.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ParameterlessInstructionDescriptor.cpp" />

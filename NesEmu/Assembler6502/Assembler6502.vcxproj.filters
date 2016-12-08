@@ -31,6 +31,24 @@
     <Filter Include="Source Files\IntructionParsers\ZeroPageParsers">
       <UniqueIdentifier>{4d377738-d741-4fa9-b8a0-1e252d7f6a15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\InstructionDescriptors\ZeroPageDescriptors">
+      <UniqueIdentifier>{d2b5d1e6-7fb1-4144-9afe-b7b74797bcbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InstructionDescriptors\ZeroPageDescriptors">
+      <UniqueIdentifier>{b63f680b-47d5-4c08-9aad-ec130c6f7412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IntructionParsers\AbsoluteParsers">
+      <UniqueIdentifier>{ab2447bc-0a5a-45c2-bca2-2325bab67bce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\InstructionDescriptors\AbsoluteDescriptors">
+      <UniqueIdentifier>{ceb9603a-8aa9-4368-a46b-88b606d9dccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InstructionDescriptors\AbsoluteDescriptors">
+      <UniqueIdentifier>{464a6834-bf8c-44a4-bd57-5ea01a0ea19c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IntructionParsers\AbsoluteParsers">
+      <UniqueIdentifier>{275130bd-fc85-4ee6-b251-9176d2c49998}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssemblyModule.h">
@@ -48,17 +66,8 @@
     <ClInclude Include="ParameterlessInstructionDescriptor.h">
       <Filter>Header Files\InstructionDescriptors</Filter>
     </ClInclude>
-    <ClInclude Include="ZeroPageInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors</Filter>
-    </ClInclude>
-    <ClInclude Include="ZeroPageYInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors</Filter>
-    </ClInclude>
     <ClInclude Include="InstructionToken.h">
       <Filter>Header Files\IntructionParsers</Filter>
-    </ClInclude>
-    <ClInclude Include="ZeroPageXInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors</Filter>
     </ClInclude>
     <ClInclude Include="BaseZeroPageInstructionParser.h">
       <Filter>Header Files\IntructionParsers\ZeroPageParsers</Filter>
@@ -71,6 +80,30 @@
     </ClInclude>
     <ClInclude Include="ZeroPageYInstructionParser.h">
       <Filter>Header Files\IntructionParsers\ZeroPageParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ZeroPageInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="ZeroPageYInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="ZeroPageXInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseZeroPageInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAbsoluteInstructionParser.h">
+      <Filter>Header Files\IntructionParsers\AbsoluteParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="AbsoluteInstructionParser.h">
+      <Filter>Header Files\IntructionParsers\AbsoluteParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAbsoluteInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\AbsoluteDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="AbsoluteInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\AbsoluteDescriptors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -92,17 +125,8 @@
     <ClCompile Include="ParameterlessInstructionDescriptor.cpp">
       <Filter>Source Files\InstructionDescriptors</Filter>
     </ClCompile>
-    <ClCompile Include="ZeroPageInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors</Filter>
-    </ClCompile>
-    <ClCompile Include="ZeroPageYInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors</Filter>
-    </ClCompile>
     <ClCompile Include="InstructionToken.cpp">
       <Filter>Source Files\IntructionParsers</Filter>
-    </ClCompile>
-    <ClCompile Include="ZeroPageXInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors</Filter>
     </ClCompile>
     <ClCompile Include="ZeroPageYInstructionParser.cpp">
       <Filter>Source Files\IntructionParsers\ZeroPageParsers</Filter>
@@ -112,6 +136,27 @@
     </ClCompile>
     <ClCompile Include="ZeroPageInstructionParser.cpp">
       <Filter>Source Files\IntructionParsers\ZeroPageParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ZeroPageInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="ZeroPageYInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="ZeroPageXInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseZeroPageInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAbsoluteInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\AbsoluteDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="AbsoluteInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\AbsoluteDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="AbsoluteInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers\AbsoluteParsers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

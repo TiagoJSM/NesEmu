@@ -48,6 +48,12 @@
     <ClInclude Include="ZeroPageInstructionDescriptor.h">
       <Filter>Header Files\InstructionDescriptors</Filter>
     </ClInclude>
+    <ClInclude Include="ZeroPageYInstructionParser.h">
+      <Filter>Header Files\IntructionParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ZeroPageYInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyModule.cpp">
@@ -72,6 +78,12 @@
       <Filter>Source Files\IntructionParsers</Filter>
     </ClCompile>
     <ClCompile Include="ZeroPageInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="ZeroPageYInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ZeroPageYInstructionDescriptor.cpp">
       <Filter>Source Files\InstructionDescriptors</Filter>
     </ClCompile>
   </ItemGroup>

@@ -20,5 +20,10 @@ int main() {
 	auto canParseIndirectY = parser3.CanParse("EOR ($44),Y");
 	auto parseIndirectX = (WordOperandYInstructionDescriptor*)parser3.Parse("EOR ($44),Y");
 
+	ZeroPageInstructionParser parser4;
+	auto canParseZeroPage = parser4.CanParse("EOR $44");
+	auto zeroPageParsed = (ByteOperandInstructionDescriptor*)parser4.Parse("EOR $40");
+	auto data = zeroPageParsed->GetOperationCodes();
+
 	return 0;
 }

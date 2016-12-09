@@ -5,4 +5,8 @@ namespace Assembler6502 {
 		:BaseByteOperandInstructionDescriptor(instruction, operand) {
 
 	}
+
+	vector<uint8_t> ByteOperandInstructionDescriptor::GetOperationCodes() {
+		return vector<uint8_t> { GetOpCode(OpCodeEntry(InstructionType::EOR, AddressingMode::ZeroPage, Operator::None)), GetOperand() };
+	}
 }

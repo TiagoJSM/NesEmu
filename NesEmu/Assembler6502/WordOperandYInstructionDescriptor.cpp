@@ -5,4 +5,5 @@ namespace Assembler6502 {
 		:BaseWordOperandInstructionDescriptor(instruction, operand) {
 
 	}
+
 }

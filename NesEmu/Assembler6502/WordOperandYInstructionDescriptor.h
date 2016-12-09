@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "BaseWordOperandInstructionDescriptor.h"
 
 using namespace std;

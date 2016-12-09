@@ -1,6 +1,9 @@
 #include "BaseInstructionDescriptor.h"
 
 namespace Assembler6502 {
+	OpCodeEntry::OpCodeEntry(InstructionType instructionType, AddressingMode addressingMode, Operator oper) 
+		:instructionType(instructionType), addressingMode(addressingMode), oper(oper) {}
+
 	map<string, InstructionType> BaseInstructionDescriptor::_instructionMapping = {
 		{ "ADC", InstructionType::ADC },
 		{ "AND", InstructionType::AND },
@@ -60,6 +63,11 @@ namespace Assembler6502 {
 		{ "TYA", InstructionType::TYA }
 	};
 
+	map<OpCodeEntry, uint8_t, OpEntryComparator> BaseInstructionDescriptor::_opCodeMapping = {
+		{ OpCodeEntry(InstructionType::EOR, AddressingMode::ZeroPage, Operator::None), 0x44 },
+		{ OpCodeEntry(InstructionType::EOR, AddressingMode::Immediate, Operator::None), 0x49 }
+	};
+
 	InstructionType BaseInstructionDescriptor::GetInstructionType(const string& intruction) {
 		if (_instructionMapping.find(intruction) != _instructionMapping.end()) {
 			return _instructionMapping[intruction];
@@ -74,5 +82,9 @@ namespace Assembler6502 {
 			}
 		}
 		return string();
+	}
+
+	uint8_t BaseInstructionDescriptor::GetOpCode(const OpCodeEntry& entry) {
+		return _opCodeMapping[entry];
 	}
 }

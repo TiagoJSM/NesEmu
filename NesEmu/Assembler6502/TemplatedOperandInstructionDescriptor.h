@@ -17,7 +17,7 @@ namespace Assembler6502 {
 			return _instruction;
 		}
 		TOperand GetOperand() {
-			return _operand
+			return _operand;
 		}
 	};
 }

@@ -142,42 +142,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AbsoluteInstructionDescriptor.h" />
+    <ClInclude Include="BaseIndirectInstructionParser.h" />
+    <ClInclude Include="IndirectInstructionParser.h" />
+    <ClInclude Include="IndirectXInstructionParser.h" />
+    <ClInclude Include="IndirectYInstructionParser.h" />
+    <ClInclude Include="WordOperandInstructionDescriptor.h" />
     <ClInclude Include="AbsoluteInstructionParser.h" />
+    <ClInclude Include="WordOperandXInstructionDescriptor.h" />
+    <ClInclude Include="AbsoluteXInstructionParser.h" />
+    <ClInclude Include="WordOperandYInstructionDescriptor.h" />
+    <ClInclude Include="AbsoluteYInstructionParser.h" />
     <ClInclude Include="AssemblyModule.h" />
-    <ClInclude Include="BaseAbsoluteInstructionDescriptor.h" />
     <ClInclude Include="BaseAbsoluteInstructionParser.h" />
     <ClInclude Include="BaseInstructionDescriptor.h" />
     <ClInclude Include="BaseInstructionParser.h" />
-    <ClInclude Include="BaseZeroPageInstructionDescriptor.h" />
     <ClInclude Include="BaseZeroPageInstructionParser.h" />
+    <ClInclude Include="BaseByteOperandInstructionDescriptor.h" />
     <ClInclude Include="InstructionToken.h" />
+    <ClInclude Include="TemplatedOperandInstructionDescriptor.h" />
     <ClInclude Include="ParameterlessInstructionDescriptor.h" />
     <ClInclude Include="ParameterlessInstructionParser.h" />
-    <ClInclude Include="ZeroPageInstructionDescriptor.h" />
+    <ClInclude Include="BaseWordOperandInstructionDescriptor.h" />
+    <ClInclude Include="ByteOperandInstructionDescriptor.h" />
     <ClInclude Include="ZeroPageInstructionParser.h" />
-    <ClInclude Include="ZeroPageXInstructionDescriptor.h" />
+    <ClInclude Include="ByteOperandXInstructionDescriptor.h" />
     <ClInclude Include="ZeroPageXInstructionParser.h" />
-    <ClInclude Include="ZeroPageYInstructionDescriptor.h" />
+    <ClInclude Include="ByteOperandYInstructionDescriptor.h" />
     <ClInclude Include="ZeroPageYInstructionParser.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AbsoluteInstructionDescriptor.cpp" />
+    <ClCompile Include="IndirectInstructionParser.cpp" />
+    <ClCompile Include="IndirectXInstructionParser.cpp" />
+    <ClCompile Include="IndirectYInstructionParser.cpp" />
+    <ClCompile Include="WordOperandInstructionDescriptor.cpp" />
     <ClCompile Include="AbsoluteInstructionParser.cpp" />
+    <ClCompile Include="WordOperandXInstructionDescriptor.cpp" />
+    <ClCompile Include="AbsoluteXInstructionParser.cpp" />
+    <ClCompile Include="WordOperandYInstructionDescriptor.cpp" />
+    <ClCompile Include="AbsoluteYInstructionParser.cpp" />
     <ClCompile Include="AssemblyModule.cpp" />
-    <ClCompile Include="BaseAbsoluteInstructionDescriptor.cpp" />
     <ClCompile Include="BaseInstructionDescriptor.cpp" />
     <ClCompile Include="BaseInstructionParser.cpp" />
-    <ClCompile Include="BaseZeroPageInstructionDescriptor.cpp" />
+    <ClCompile Include="BaseByteOperandInstructionDescriptor.cpp" />
     <ClCompile Include="InstructionToken.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ParameterlessInstructionDescriptor.cpp" />
     <ClCompile Include="ParameterlessInstructionParser.cpp" />
-    <ClCompile Include="ZeroPageInstructionDescriptor.cpp" />
+    <ClCompile Include="BaseWordOperandInstructionDescriptor.cpp" />
+    <ClCompile Include="ByteOperandInstructionDescriptor.cpp" />
     <ClCompile Include="ZeroPageInstructionParser.cpp" />
-    <ClCompile Include="ZeroPageXInstructionDescriptor.cpp" />
+    <ClCompile Include="ByteOperandXInstructionDescriptor.cpp" />
     <ClCompile Include="ZeroPageXInstructionParser.cpp" />
-    <ClCompile Include="ZeroPageYInstructionDescriptor.cpp" />
+    <ClCompile Include="ByteOperandYInstructionDescriptor.cpp" />
     <ClCompile Include="ZeroPageYInstructionParser.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

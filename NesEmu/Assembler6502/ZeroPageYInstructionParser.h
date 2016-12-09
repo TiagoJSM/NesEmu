@@ -1,11 +1,11 @@
 #pragma once
 
 #include "BaseZeroPageInstructionParser.h"
-#include "ZeroPageYInstructionDescriptor.h"
+#include "ByteOperandYInstructionDescriptor.h"
 
 namespace Assembler6502 {
 
-	class ZeroPageYInstructionParser : public BaseZeroPageInstructionParser<ZeroPageYInstructionDescriptor> {
+	class ZeroPageYInstructionParser : public BaseZeroPageInstructionParser<ByteOperandYInstructionDescriptor> {
 	public:
 		ZeroPageYInstructionParser();
 	};

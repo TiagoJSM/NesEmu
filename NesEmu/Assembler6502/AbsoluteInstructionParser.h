@@ -1,11 +1,11 @@
 #pragma once
 
 #include "BaseAbsoluteInstructionParser.h"
-#include "AbsoluteInstructionDescriptor.h"
+#include "WordOperandInstructionDescriptor.h"
 
 namespace Assembler6502 {
 
-	class AbsoluteInstructionParser : public BaseAbsoluteInstructionParser<AbsoluteInstructionDescriptor> {
+	class AbsoluteInstructionParser : public BaseAbsoluteInstructionParser<WordOperandInstructionDescriptor> {
 	public:
 		AbsoluteInstructionParser();
 	};

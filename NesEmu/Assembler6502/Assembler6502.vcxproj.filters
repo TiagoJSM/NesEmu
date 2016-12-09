@@ -31,23 +31,29 @@
     <Filter Include="Source Files\IntructionParsers\ZeroPageParsers">
       <UniqueIdentifier>{4d377738-d741-4fa9-b8a0-1e252d7f6a15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\InstructionDescriptors\ZeroPageDescriptors">
-      <UniqueIdentifier>{d2b5d1e6-7fb1-4144-9afe-b7b74797bcbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\InstructionDescriptors\ZeroPageDescriptors">
-      <UniqueIdentifier>{b63f680b-47d5-4c08-9aad-ec130c6f7412}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\IntructionParsers\AbsoluteParsers">
       <UniqueIdentifier>{ab2447bc-0a5a-45c2-bca2-2325bab67bce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\InstructionDescriptors\AbsoluteDescriptors">
-      <UniqueIdentifier>{ceb9603a-8aa9-4368-a46b-88b606d9dccd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\InstructionDescriptors\AbsoluteDescriptors">
-      <UniqueIdentifier>{464a6834-bf8c-44a4-bd57-5ea01a0ea19c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\IntructionParsers\AbsoluteParsers">
       <UniqueIdentifier>{275130bd-fc85-4ee6-b251-9176d2c49998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\InstructionDescriptors\WordOperandInstructionDescriptors">
+      <UniqueIdentifier>{ceb9603a-8aa9-4368-a46b-88b606d9dccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InstructionDescriptors\WordOperandInstructionDescriptors">
+      <UniqueIdentifier>{464a6834-bf8c-44a4-bd57-5ea01a0ea19c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\InstructionDescriptors\ByteOperandInstructionDescriptors">
+      <UniqueIdentifier>{d2b5d1e6-7fb1-4144-9afe-b7b74797bcbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InstructionDescriptors\ByteOperandInstructionDescriptors">
+      <UniqueIdentifier>{b63f680b-47d5-4c08-9aad-ec130c6f7412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IntructionParsers\IndirectParsers">
+      <UniqueIdentifier>{f57ba550-b8c6-4742-ba6d-f780418fccf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IntructionParsers\IndirectParsers">
+      <UniqueIdentifier>{ccc1a22e-db86-4e76-b698-2644bbecdde2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,29 +87,56 @@
     <ClInclude Include="ZeroPageYInstructionParser.h">
       <Filter>Header Files\IntructionParsers\ZeroPageParsers</Filter>
     </ClInclude>
-    <ClInclude Include="ZeroPageInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
-    </ClInclude>
-    <ClInclude Include="ZeroPageYInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
-    </ClInclude>
-    <ClInclude Include="ZeroPageXInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseZeroPageInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
-    </ClInclude>
     <ClInclude Include="BaseAbsoluteInstructionParser.h">
       <Filter>Header Files\IntructionParsers\AbsoluteParsers</Filter>
     </ClInclude>
     <ClInclude Include="AbsoluteInstructionParser.h">
       <Filter>Header Files\IntructionParsers\AbsoluteParsers</Filter>
     </ClInclude>
-    <ClInclude Include="BaseAbsoluteInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors\AbsoluteDescriptors</Filter>
+    <ClInclude Include="AbsoluteXInstructionParser.h">
+      <Filter>Header Files\IntructionParsers\AbsoluteParsers</Filter>
     </ClInclude>
-    <ClInclude Include="AbsoluteInstructionDescriptor.h">
-      <Filter>Header Files\InstructionDescriptors\AbsoluteDescriptors</Filter>
+    <ClInclude Include="AbsoluteYInstructionParser.h">
+      <Filter>Header Files\IntructionParsers\AbsoluteParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="TemplatedOperandInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseWordOperandInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseByteOperandInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="WordOperandInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\WordOperandInstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="WordOperandXInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\WordOperandInstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="WordOperandYInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\WordOperandInstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="ByteOperandInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\ByteOperandInstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="ByteOperandXInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\ByteOperandInstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="ByteOperandYInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors\ByteOperandInstructionDescriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseIndirectInstructionParser.h">
+      <Filter>Header Files\IntructionParsers\IndirectParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="IndirectInstructionParser.h">
+      <Filter>Header Files\IntructionParsers\IndirectParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="IndirectXInstructionParser.h">
+      <Filter>Header Files\IntructionParsers\IndirectParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="IndirectYInstructionParser.h">
+      <Filter>Header Files\IntructionParsers\IndirectParsers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,26 +170,47 @@
     <ClCompile Include="ZeroPageInstructionParser.cpp">
       <Filter>Source Files\IntructionParsers\ZeroPageParsers</Filter>
     </ClCompile>
-    <ClCompile Include="ZeroPageInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
-    </ClCompile>
-    <ClCompile Include="ZeroPageYInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
-    </ClCompile>
-    <ClCompile Include="ZeroPageXInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseZeroPageInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors\ZeroPageDescriptors</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseAbsoluteInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors\AbsoluteDescriptors</Filter>
-    </ClCompile>
-    <ClCompile Include="AbsoluteInstructionDescriptor.cpp">
-      <Filter>Source Files\InstructionDescriptors\AbsoluteDescriptors</Filter>
-    </ClCompile>
     <ClCompile Include="AbsoluteInstructionParser.cpp">
       <Filter>Source Files\IntructionParsers\AbsoluteParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="AbsoluteXInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers\AbsoluteParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="AbsoluteYInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers\AbsoluteParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseWordOperandInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseByteOperandInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="WordOperandInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\WordOperandInstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="WordOperandXInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\WordOperandInstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="WordOperandYInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\WordOperandInstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="ByteOperandInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\ByteOperandInstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="ByteOperandXInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\ByteOperandInstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="ByteOperandYInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors\ByteOperandInstructionDescriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="IndirectInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers\IndirectParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="IndirectXInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers\IndirectParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="IndirectYInstructionParser.cpp">
+      <Filter>Source Files\IntructionParsers\IndirectParsers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

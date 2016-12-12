@@ -95,13 +95,15 @@ namespace Assembler6502 {
 		bool operator()(const OpCodeEntry& e1, const OpCodeEntry& e2) const
 		{
 			return 
-				e1.instructionType == e2.instructionType &&
-				e1.addressingMode == e2.addressingMode &&
-				e1.oper == e2.oper;
+				((int)e1.instructionType - (int)e2.instructionType) < 0 &&
+				((int)e1.addressingMode - (int)e2.addressingMode) < 0 &&
+				((int)e1.oper - (int)e2.oper) < 0;
 		}
 	};
 
 	class BaseInstructionDescriptor {
+	public:
+		virtual uint8_t GetInstructionSize() = 0;
 	protected:
 		InstructionType GetInstructionType(const string& intruction);
 		string GetInstructionType(InstructionType intruction);

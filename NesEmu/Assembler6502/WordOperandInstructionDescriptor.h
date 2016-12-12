@@ -8,6 +8,6 @@ namespace Assembler6502 {
 
 	class WordOperandInstructionDescriptor : public BaseWordOperandInstructionDescriptor {
 	public:
-		WordOperandInstructionDescriptor(const string& instruction, const uint16_t operand);
+		WordOperandInstructionDescriptor(const string& instruction, const InstructionToken operand);
 	};
 }

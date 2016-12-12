@@ -8,6 +8,8 @@
 using namespace Assembler6502;
 
 int main() {
+	Labels labels;
+
 	ZeroPageYInstructionParser parser1;
 	auto canParseY = parser1.CanParse("lda $aa,y");
 	auto parseY = (ByteOperandYInstructionDescriptor*)parser1.Parse("lda $aa,y");
@@ -23,7 +25,7 @@ int main() {
 	ZeroPageInstructionParser parser4;
 	auto canParseZeroPage = parser4.CanParse("EOR $44");
 	auto zeroPageParsed = (ByteOperandInstructionDescriptor*)parser4.Parse("EOR $40");
-	auto data = zeroPageParsed->GetOperationCodes();
+	auto data = zeroPageParsed->GetOperationCodes(labels);
 
 	return 0;
 }

@@ -64,7 +64,7 @@ namespace Assembler6502 {
 	};
 
 	map<OpCodeEntry, uint8_t, OpEntryComparator> BaseInstructionDescriptor::_opCodeMapping = {
-		{ OpCodeEntry(InstructionType::EOR, AddressingMode::ZeroPage, Operator::None), 0x44 },
+		{ OpCodeEntry(InstructionType::EOR, AddressingMode::ZeroPage, Operator::None), 0x45 },
 		{ OpCodeEntry(InstructionType::EOR, AddressingMode::Immediate, Operator::None), 0x49 }
 	};
 

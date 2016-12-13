@@ -8,7 +8,7 @@
 
 #include "BaseParser.h"
 #include "InstructionToken.h"
-#include "Labels.h"
+#include "Symbols.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ namespace Assembler6502 {
 		MacroParser();
 
 		bool CanParse(const string& intruction);
-		void Parse(const string& intruction, Labels<string>& symbols);
+		void Parse(const string& intruction, Symbols<string>& symbols);
 	private:
 		regex _macroFormat;
 	};

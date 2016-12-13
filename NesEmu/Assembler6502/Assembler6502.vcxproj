@@ -147,7 +147,7 @@
     <ClInclude Include="IndirectInstructionParser.h" />
     <ClInclude Include="IndirectXInstructionParser.h" />
     <ClInclude Include="IndirectYInstructionParser.h" />
-    <ClInclude Include="Labels.h" />
+    <ClInclude Include="Symbols.h" />
     <ClInclude Include="MacroParser.h" />
     <ClInclude Include="WordOperandInstructionDescriptor.h" />
     <ClInclude Include="AbsoluteInstructionParser.h" />

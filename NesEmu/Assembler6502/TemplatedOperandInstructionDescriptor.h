@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BaseInstructionDescriptor.h"
-#include "Labels.h"
+#include "Symbols.h"
 #include "InstructionToken.h"
 
 using namespace std;
@@ -18,7 +18,7 @@ namespace Assembler6502 {
 		string GetInstruction() {
 			return _instruction;
 		}
-		TOperand GetOperand(const Labels<uint16_t>& labels) {
+		TOperand GetOperand(const Symbols<uint16_t>& labels) {
 			const string& s = _operand.AsString();
 			if (labels.Contains(s)) {
 				return static_cast<TOperand>(labels.GetLabelValue(_operand.AsString()));

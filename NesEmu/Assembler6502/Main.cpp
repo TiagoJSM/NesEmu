@@ -9,8 +9,8 @@
 using namespace Assembler6502;
 
 int main() {
-	Labels<uint16_t> labels;
-	Labels<string> macros;
+	Symbols<uint16_t> labels;
+	Symbols<string> macros;
 
 	ZeroPageYInstructionParser parser1;
 	auto canParseY = parser1.CanParse("lda $aa,y");

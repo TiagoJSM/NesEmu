@@ -6,9 +6,9 @@ using namespace std;
 
 namespace Assembler6502 {
 	template <typename TMappedType>
-	class Labels {
+	class Symbols {
 	public:
-		Labels() {}
+		Symbols() {}
 
 		void AddLabel(const string& labelName, TMappedType value) {
 			_labelMapping.insert(pair<string, TMappedType>(labelName, value));

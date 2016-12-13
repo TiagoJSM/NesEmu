@@ -9,7 +9,7 @@ namespace Assembler6502 {
 		return regex_match(intruction, _macroFormat);
 	}
 
-	void MacroParser::Parse(const string& intruction, Labels<string>& symbols) {
+	void MacroParser::Parse(const string& intruction, Symbols<string>& symbols) {
 		if (CanParse(intruction)) {
 			auto tokens = Tokenize(intruction, " \t,");
 			symbols.AddLabel(tokens[1].AsString(), tokens[2].AsString());

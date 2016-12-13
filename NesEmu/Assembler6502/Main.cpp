@@ -4,11 +4,13 @@
 #include "ZeroPageYInstructionParser.h"
 #include "ZeroPageXInstructionParser.h"
 #include "IndirectYInstructionParser.h"
+#include "MacroParser.h"
 
 using namespace Assembler6502;
 
 int main() {
-	Labels labels;
+	Labels<uint16_t> labels;
+	Labels<string> macros;
 
 	ZeroPageYInstructionParser parser1;
 	auto canParseY = parser1.CanParse("lda $aa,y");
@@ -26,6 +28,10 @@ int main() {
 	auto canParseZeroPage = parser4.CanParse("EOR $44");
 	auto zeroPageParsed = (ByteOperandInstructionDescriptor*)parser4.Parse("EOR $40");
 	auto data = zeroPageParsed->GetOperationCodes(labels);
+
+	MacroParser macroParser;
+	auto canParseMacro = macroParser.CanParse("#define Val $21");
+	macroParser.Parse("#define Val $21", macros);
 
 	return 0;
 }

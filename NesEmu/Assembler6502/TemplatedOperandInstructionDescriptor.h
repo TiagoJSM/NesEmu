@@ -18,7 +18,7 @@ namespace Assembler6502 {
 		string GetInstruction() {
 			return _instruction;
 		}
-		TOperand GetOperand(const Labels& labels) {
+		TOperand GetOperand(const Labels<uint16_t>& labels) {
 			const string& s = _operand.AsString();
 			if (labels.Contains(s)) {
 				return static_cast<TOperand>(labels.GetLabelValue(_operand.AsString()));

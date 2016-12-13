@@ -1,20 +1,24 @@
 #include "Labels.h"
 
-namespace Assembler6502 {
+/*namespace Assembler6502 {
 	
-	Labels::Labels() {}
+	template <typename TMappedType>
+	Labels<TMappedType>::Labels() {}
 
-	void Labels::AddLabel(const string& labelName, uint16_t value) {
-		_labelMapping.insert(pair<string, uint16_t>(labelName, value));
+	template <typename TMappedType>
+	void Labels<TMappedType>::AddLabel(const string& labelName, TMappedType value) const {
+		_labelMapping.insert(pair<string, TMappedType>(labelName, value));
 	}
 
-	bool Labels::Contains(const string& labelName) const {
+	template <typename TMappedType>
+	bool Labels<TMappedType>::Contains(const string& labelName) const {
 		auto it = _labelMapping.find(labelName);
 		return it != _labelMapping.end();
 	}
 
-	uint16_t Labels::GetLabelValue(const string& labelName) const {
+	template <typename TMappedType>
+	TMappedType Labels<TMappedType>::GetLabelValue(const string& labelName) const {
 		return _labelMapping.at(labelName);
 	}
 
-}
+}*/

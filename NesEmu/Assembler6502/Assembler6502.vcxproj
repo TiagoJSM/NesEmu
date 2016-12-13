@@ -143,10 +143,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseIndirectInstructionParser.h" />
+    <ClInclude Include="BaseParser.h" />
     <ClInclude Include="IndirectInstructionParser.h" />
     <ClInclude Include="IndirectXInstructionParser.h" />
     <ClInclude Include="IndirectYInstructionParser.h" />
     <ClInclude Include="Labels.h" />
+    <ClInclude Include="MacroParser.h" />
     <ClInclude Include="WordOperandInstructionDescriptor.h" />
     <ClInclude Include="AbsoluteInstructionParser.h" />
     <ClInclude Include="WordOperandXInstructionDescriptor.h" />
@@ -172,10 +174,11 @@
     <ClInclude Include="ZeroPageYInstructionParser.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseParser.cpp" />
     <ClCompile Include="IndirectInstructionParser.cpp" />
     <ClCompile Include="IndirectXInstructionParser.cpp" />
     <ClCompile Include="IndirectYInstructionParser.cpp" />
-    <ClCompile Include="Labels.cpp" />
+    <ClCompile Include="MacroParser.cpp" />
     <ClCompile Include="WordOperandInstructionDescriptor.cpp" />
     <ClCompile Include="AbsoluteInstructionParser.cpp" />
     <ClCompile Include="WordOperandXInstructionDescriptor.cpp" />

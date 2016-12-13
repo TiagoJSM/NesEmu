@@ -11,7 +11,7 @@ namespace Assembler6502 {
 		BaseIndirectInstructionParser(regex reg) : BaseInstructionParser(reg) {}
 	protected:
 		BaseInstructionDescriptor* DoParse(const string& intruction) override {
-			auto tokens = Tokenize(intruction, " \t$(),");
+			auto tokens = Tokenize(intruction, " \t()$,");
 			return new TIndirectDescriptor(tokens[0].AsString(), tokens[1]);
 		}
 	};

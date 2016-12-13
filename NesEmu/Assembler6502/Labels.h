@@ -5,15 +5,23 @@
 using namespace std;
 
 namespace Assembler6502 {
+	template <typename TMappedType>
 	class Labels {
 	public:
-		Labels();
+		Labels() {}
 
-		void AddLabel(const string& labelName, uint16_t value);
-		bool Contains(const string& labelName) const;
-		uint16_t GetLabelValue(const string& labelName) const;
+		void AddLabel(const string& labelName, TMappedType value) {
+			_labelMapping.insert(pair<string, TMappedType>(labelName, value));
+		}
+		bool Contains(const string& labelName) const {
+			auto it = _labelMapping.find(labelName);
+			return it != _labelMapping.end();
+		}
+		TMappedType GetLabelValue(const string& labelName) const {
+			return _labelMapping.at(labelName);
+		}
 
 	private:
-		map<string, uint16_t> _labelMapping;
+		map<string, TMappedType> _labelMapping;
 	};
 }

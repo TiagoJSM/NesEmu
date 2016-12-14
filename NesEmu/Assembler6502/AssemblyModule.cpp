@@ -30,11 +30,11 @@ namespace Assembler6502 {
 
 	vector<string> AssemblyModule::PreProcess(const vector<string>& lines) {
 		auto macros = ProcessMacros(lines);
-		return ReplaceWithMacros(lines, macros);
+		return macros.Replace(lines);
 	}
 
-	Symbols<string> AssemblyModule::ProcessMacros(const vector<string>& lines) {
-		Symbols<string> macros;
+	Macros AssemblyModule::ProcessMacros(const vector<string>& lines) {
+		Macros macros;
 		MacroParser macroParser;
 		for (auto iterator = lines.begin(); iterator != lines.end(); iterator++) {
 			if (macroParser.CanParse(*iterator)) {
@@ -42,9 +42,5 @@ namespace Assembler6502 {
 			}
 		}
 		return macros;
-	}
-
-	vector<string> AssemblyModule::ReplaceWithMacros(const vector<string>& lines, const Symbols<string>& macros) {
-		return lines;
 	}
 }

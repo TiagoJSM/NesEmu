@@ -20,7 +20,6 @@ namespace Assembler6502 {
 		vector<string> RemoveComments();
 		string RemoveSingleLineComment(const string& line);
 		vector<string> PreProcess(const vector<string>& lines);
-		Symbols<string> ProcessMacros(const vector<string>& lines);
-		vector<string> ReplaceWithMacros(const vector<string>& lines, const Symbols<string>& macros);
+		Macros ProcessMacros(const vector<string>& lines);
 	};
 }

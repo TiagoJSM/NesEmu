@@ -21,5 +21,6 @@ namespace Assembler6502 {
 		string RemoveSingleLineComment(const string& line);
 		vector<string> PreProcess(const vector<string>& lines);
 		Macros ProcessMacros(const vector<string>& lines);
+		vector<string> RemoveMacros(const vector<string>& lines);
 	};
 }

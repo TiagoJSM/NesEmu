@@ -30,7 +30,8 @@ namespace Assembler6502 {
 
 	vector<string> AssemblyModule::PreProcess(const vector<string>& lines) {
 		auto macros = ProcessMacros(lines);
-		return macros.Replace(lines);
+		auto linesWithoutMacros = RemoveMacros(lines);
+		return macros.Replace(linesWithoutMacros);
 	}
 
 	Macros AssemblyModule::ProcessMacros(const vector<string>& lines) {
@@ -43,4 +44,17 @@ namespace Assembler6502 {
 		}
 		return macros;
 	}
+
+	vector<string> AssemblyModule::RemoveMacros(const vector<string>& lines) {
+		MacroParser macroParser;
+		auto linesWithoutMacros = lines;
+		linesWithoutMacros
+			.erase(
+				remove_if(
+					linesWithoutMacros.begin(), 
+					linesWithoutMacros.end(), 
+					[&macroParser](string line) { return macroParser.CanParse(line); }));
+		return linesWithoutMacros;
+	}
+
 }

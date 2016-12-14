@@ -35,5 +35,7 @@ int main() {
 
 	auto preprocessed = macros.Replace("lda Val, #$4");
 
+	//AssemblyModule module();
+
 	return 0;
 }

@@ -148,6 +148,7 @@
     <ClInclude Include="IndirectInstructionParser.h" />
     <ClInclude Include="IndirectXInstructionParser.h" />
     <ClInclude Include="IndirectYInstructionParser.h" />
+    <ClInclude Include="LabelParser.h" />
     <ClInclude Include="StringHelpers.h" />
     <ClInclude Include="Symbols.h" />
     <ClInclude Include="MacroParser.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="IndirectInstructionParser.cpp" />
     <ClCompile Include="IndirectXInstructionParser.cpp" />
     <ClCompile Include="IndirectYInstructionParser.cpp" />
+    <ClCompile Include="LabelParser.cpp" />
     <ClCompile Include="MacroParser.cpp" />
     <ClCompile Include="WordOperandInstructionDescriptor.cpp" />
     <ClCompile Include="AbsoluteInstructionParser.cpp" />

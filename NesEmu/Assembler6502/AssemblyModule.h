@@ -6,6 +6,17 @@
 #include "Symbols.h"
 #include "MacroParser.h"
 #include "StringHelpers.h"
+#include "LabelParser.h"
+#include "ZeroPageInstructionParser.h"
+#include "ZeroPageXInstructionParser.h"
+#include "ZeroPageYInstructionParser.h"
+#include "IndirectInstructionParser.h"
+#include "IndirectXInstructionParser.h"
+#include "IndirectYInstructionParser.h"
+#include "AbsoluteInstructionParser.h"
+#include "AbsoluteXInstructionParser.h"
+#include "AbsoluteYInstructionParser.h"
+
 #include "cpplinq.hpp"
 
 using namespace std;
@@ -27,5 +38,7 @@ namespace Assembler6502 {
 		Macros ProcessMacros(const vector<string>& lines);
 		vector<string> RemoveMacros(const vector<string>& lines);
 		vector<string> RemoveEmptyLinesAndTrim(const vector<string>& lines);
+		void ValidateUnknownInstructions(const vector<string>& lines);
+		Labels CollectLabels(const vector<string>& lines);
 	};
 }

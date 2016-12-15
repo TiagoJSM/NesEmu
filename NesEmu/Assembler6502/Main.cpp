@@ -34,12 +34,13 @@ int main() {
 	auto canParseMacro = macroParser.CanParse("#define Val $21");
 	macroParser.Parse("#define Val $21", macros);
 
-	auto preprocessed = macros.Replace("lda Val, #$4");
+	auto preprocessed = macros.Replace("lda Val, $4");
 
 	AssemblyModule module(vector<string> {
-			"#define VAL #$44",
+			"#define VAL $44",
 			"",
-			"  LDA VAL, #$4"
+			"  LDA VAL, X",
+			"dum dum"
 	});
 
 	auto compiled = module.Compile();

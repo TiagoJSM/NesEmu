@@ -153,6 +153,9 @@
     <ClInclude Include="StringHelpers.h">
       <Filter>Header Files\Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="LabelParser.h">
+      <Filter>Header Files\LineParsers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyModule.cpp">
@@ -231,6 +234,9 @@
       <Filter>Source Files\LineParsers</Filter>
     </ClCompile>
     <ClCompile Include="BaseParser.cpp">
+      <Filter>Source Files\LineParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="LabelParser.cpp">
       <Filter>Source Files\LineParsers</Filter>
     </ClCompile>
   </ItemGroup>

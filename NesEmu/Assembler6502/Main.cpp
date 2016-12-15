@@ -5,6 +5,7 @@
 #include "ZeroPageXInstructionParser.h"
 #include "IndirectYInstructionParser.h"
 #include "MacroParser.h"
+#include "AssemblyModule.h"
 
 using namespace Assembler6502;
 
@@ -35,7 +36,13 @@ int main() {
 
 	auto preprocessed = macros.Replace("lda Val, #$4");
 
-	//AssemblyModule module();
+	AssemblyModule module(vector<string> {
+			"#define VAL #$44",
+			"",
+			"  LDA VAL, #$4"
+	});
+
+	auto compiled = module.Compile();
 
 	return 0;
 }

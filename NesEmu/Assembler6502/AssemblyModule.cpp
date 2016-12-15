@@ -3,12 +3,13 @@
 namespace Assembler6502 {
 	const char SINGLE_LINE_COMMENT_IDENTIFIER = ';';
 
-	AssemblyModule::AssemblyModule(vector<string>& intructionLines) :_intructionLines(intructionLines){
+	AssemblyModule::AssemblyModule(const vector<string>& intructionLines) :_intructionLines(intructionLines){
 	}
 
 	vector<uint8_t> AssemblyModule::Compile() {
 		auto uncommented = RemoveComments();
-		auto prerocessedCode = PreProcess(uncommented);
+		auto preProcessedCode = PreProcess(uncommented);
+		
 		return vector<uint8_t>();
 	}
 
@@ -31,7 +32,8 @@ namespace Assembler6502 {
 	vector<string> AssemblyModule::PreProcess(const vector<string>& lines) {
 		auto macros = ProcessMacros(lines);
 		auto linesWithoutMacros = RemoveMacros(lines);
-		return macros.Replace(linesWithoutMacros);
+		auto replacedCode = macros.Replace(linesWithoutMacros);
+		return RemoveEmptyLinesAndTrim(replacedCode);
 	}
 
 	Macros AssemblyModule::ProcessMacros(const vector<string>& lines) {
@@ -57,4 +59,14 @@ namespace Assembler6502 {
 		return linesWithoutMacros;
 	}
 
+	vector<string> AssemblyModule::RemoveEmptyLinesAndTrim(const vector<string>& lines) {
+		auto nonEmptyLines = lines;
+		return from(nonEmptyLines)
+			>> select([](string line) {
+				line.erase(remove(line.begin(), line.end(), '\n\v\f\r'), line.end());
+				return line; })	//remove unwanted characters
+			>> select([](string line) { return trimmed(line); })
+			>> where([](string line) {return !line.empty(); })
+			>> to_vector();
+	}
 }

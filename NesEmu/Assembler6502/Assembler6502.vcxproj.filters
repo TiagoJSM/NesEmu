@@ -55,6 +55,9 @@
     <Filter Include="Source Files\LineParsers\IndirectParsers">
       <UniqueIdentifier>{ccc1a22e-db86-4e76-b698-2644bbecdde2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{d6a371ff-3510-46b7-a8fd-927a89a88f03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssemblyModule.h">
@@ -147,6 +150,9 @@
     <ClInclude Include="Symbols.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StringHelpers.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyModule.cpp">
@@ -227,5 +233,8 @@
     <ClCompile Include="BaseParser.cpp">
       <Filter>Source Files\LineParsers</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

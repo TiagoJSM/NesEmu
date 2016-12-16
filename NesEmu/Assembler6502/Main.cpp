@@ -36,14 +36,28 @@ int main() {
 
 	auto preprocessed = macros.Replace("lda Val, $4");
 
-	AssemblyModule module(vector<string> {
+	AssemblyModule module1(vector<string> {
 			"#define VAL $44",
 			"",
 			"  LDA VAL, X",
 			"dum dum"
 	});
 
-	auto compiled = module.Compile();
+	auto compiled1 = module1.Compile();
+
+	AssemblyModule module2(vector<string> {
+		"LDX #$08",
+		"decrement:",
+		"DEX",
+		"STX $0200",
+		"CPX #$03"
+		"BNE decrement"
+		"STX $0201"
+		"BRK"
+	});
+
+	auto compiled2 = module2.Compile(0x600);
+
 
 	return 0;
 }

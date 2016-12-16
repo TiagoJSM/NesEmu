@@ -1,8 +1,9 @@
 #include "BaseByteOperandInstructionDescriptor.h"
 
 namespace Assembler6502 {
-	BaseByteOperandInstructionDescriptor::BaseByteOperandInstructionDescriptor(const string& instruction, const InstructionToken operand)
-		:TemplatedOperandInstructionDescriptor(instruction, operand) {
+	BaseByteOperandInstructionDescriptor::BaseByteOperandInstructionDescriptor(
+		const string& instruction, const AddressingMode addressMode, const InstructionToken operand)
+		:TemplatedOperandInstructionDescriptor(instruction, addressMode, operand) {
 
 	}
 

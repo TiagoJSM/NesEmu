@@ -12,7 +12,7 @@ namespace Assembler6502 {
 	protected:
 		BaseInstructionDescriptor* DoParse(const string& intruction) override {
 			auto tokens = Tokenize(intruction, " \t$,");
-			return new TAbsoluteDescriptor(tokens[0].AsString(), tokens[1]);
+			return new TAbsoluteDescriptor(tokens[0].AsString(), AddressingMode::Absolute, tokens[1]);
 		}
 	};
 }

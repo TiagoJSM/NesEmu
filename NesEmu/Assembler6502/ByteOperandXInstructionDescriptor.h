@@ -8,6 +8,7 @@ namespace Assembler6502 {
 
 	class ByteOperandXInstructionDescriptor : public BaseByteOperandInstructionDescriptor {
 	public:
-		ByteOperandXInstructionDescriptor(const string& instruction, const InstructionToken operand);
+		ByteOperandXInstructionDescriptor(const string& instruction, const AddressingMode addressMode, const InstructionToken operand);
+		vector<uint8_t> GetOperationCodes(const Labels& labels) override;
 	};
 }

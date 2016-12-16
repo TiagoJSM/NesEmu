@@ -285,7 +285,7 @@ namespace Assembler6502 {
 		return InstructionType::Unknown;
 	}
 
-	string BaseInstructionDescriptor::GetInstructionType(InstructionType intruction) {
+	string BaseInstructionDescriptor::GetInstruction(InstructionType intruction) {
 		for (auto it = _instructionMapping.begin(); it != _instructionMapping.end(); ++it) {
 			if (it->second == intruction) {
 				return it->first;

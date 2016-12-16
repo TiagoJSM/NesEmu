@@ -146,6 +146,7 @@
     <ClInclude Include="BaseIndirectInstructionParser.h" />
     <ClInclude Include="BaseParser.h" />
     <ClInclude Include="CompilationResult.h" />
+    <ClInclude Include="ImmediateInstructionParser.h" />
     <ClInclude Include="IndirectInstructionParser.h" />
     <ClInclude Include="IndirectXInstructionParser.h" />
     <ClInclude Include="IndirectYInstructionParser.h" />

@@ -2,6 +2,8 @@
 
 #include <map>
 
+#include "Symbols.h"
+
 using namespace std;
 
 namespace Assembler6502 {
@@ -105,9 +107,10 @@ namespace Assembler6502 {
 	class BaseInstructionDescriptor {
 	public:
 		virtual uint8_t GetInstructionSize() = 0;
+		virtual vector<uint8_t> GetOperationCodes(const Labels& labels) = 0;
 	protected:
 		InstructionType GetInstructionType(const string& intruction);
-		string GetInstructionType(InstructionType intruction);
+		string GetInstruction(InstructionType intruction);
 		uint8_t GetOpCode(const OpCodeEntry& entry);
 	private:
 		static map<string, InstructionType> _instructionMapping;

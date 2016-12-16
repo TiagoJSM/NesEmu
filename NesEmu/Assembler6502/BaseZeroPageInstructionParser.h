@@ -12,7 +12,7 @@ namespace Assembler6502 {
 	protected:
 		BaseInstructionDescriptor* DoParse(const string& intruction) override {
 			auto tokens = Tokenize(intruction, " \t$,");
-			return new TZeroPageDescriptor(tokens[0].AsString(), tokens[1]);
+			return new TZeroPageDescriptor(tokens[0].AsString(), AddressingMode::ZeroPage, tokens[1]);
 		}
 	};
 }

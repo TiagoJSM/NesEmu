@@ -7,6 +7,7 @@
 #include "MacroParser.h"
 #include "StringHelpers.h"
 #include "LabelParser.h"
+#include "ImmediateInstructionParser.h"
 #include "ZeroPageInstructionParser.h"
 #include "ZeroPageXInstructionParser.h"
 #include "ZeroPageYInstructionParser.h"
@@ -35,6 +36,7 @@ namespace Assembler6502 {
 
 		LabelParser _labelParser;
 		MacroParser _macroParser;
+		ImmediateInstructionParser _immediateParser;
 		ZeroPageInstructionParser _zeroPageParser;
 		ZeroPageXInstructionParser _zeroPageXParser;
 		ZeroPageYInstructionParser _zeroPageYParser;
@@ -57,5 +59,6 @@ namespace Assembler6502 {
 		vector<string> ValidateUnknownLines(const vector<string>& lines);
 		Labels CollectLabels(const vector<string>& lines, const uint16_t baseAddress);
 		BaseInstructionParser* GetParser(const string& line);
+		vector<uint8_t> GenerateByteCode(const vector<string>& lines, const Labels& labels);
 	};
 }

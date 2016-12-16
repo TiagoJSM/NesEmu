@@ -8,6 +8,8 @@ namespace Assembler6502 {
 		_unknownLinesValidators = {
 			[&](const string& line) {return _labelParser.CanParse(line); },
 
+			[&](const string& line) {return _immediateParser.CanParse(line); },
+
 			[&](const string& line) {return _zeroPageParser.CanParse(line); },
 			[&](const string& line) {return _zeroPageXParser.CanParse(line); },
 			[&](const string& line) {return _zeroPageYParser.CanParse(line); },
@@ -22,6 +24,7 @@ namespace Assembler6502 {
 		};
 
 		_instructionParsers = {
+			&_immediateParser,
 			&_zeroPageParser,
 			&_zeroPageXParser,
 			&_zeroPageYParser,
@@ -44,7 +47,8 @@ namespace Assembler6502 {
 		}
 
 		auto labels = CollectLabels(preProcessedCode, baseAddress);
-		return CompilationResult(vector<uint8_t>());
+		auto byteCode = GenerateByteCode(preProcessedCode, labels);
+		return CompilationResult(byteCode);
 	}
 
 	vector<string> AssemblyModule::RemoveComments() {
@@ -135,5 +139,17 @@ namespace Assembler6502 {
 	BaseInstructionParser* AssemblyModule::GetParser(const string& line) {
 		return from(_instructionParsers)
 			>> first([&](BaseInstructionParser* parser) { return parser->CanParse(line); });
+	}
+
+	vector<uint8_t> AssemblyModule::GenerateByteCode(const vector<string>& lines, const Labels& labels) {
+		vector<uint8_t> byteCode;
+		for (auto iterator = lines.begin(); iterator != lines.end(); iterator++) {
+			auto parser = GetParser(*iterator);
+			if (parser != nullptr) {
+				auto descriptor = parser->Parse(*iterator);
+			}
+		}
+
+		return byteCode;
 	}
 }

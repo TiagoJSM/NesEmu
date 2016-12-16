@@ -1,12 +1,13 @@
 #include "ByteOperandInstructionDescriptor.h"
 
 namespace Assembler6502 {
-	ByteOperandInstructionDescriptor::ByteOperandInstructionDescriptor(const string& instruction, const InstructionToken operand)
-		:BaseByteOperandInstructionDescriptor(instruction, operand) {
+	ByteOperandInstructionDescriptor::ByteOperandInstructionDescriptor(
+		const string& instruction, const AddressingMode addressMode, const InstructionToken operand)
+		:BaseByteOperandInstructionDescriptor(instruction, addressMode, operand) {
 
 	}
 
-	vector<uint8_t> ByteOperandInstructionDescriptor::GetOperationCodes(const Symbols<uint16_t>& labels) {
-		return vector<uint8_t> { GetOpCode(OpCodeEntry(InstructionType::EOR, AddressingMode::ZeroPage, Operator::None)), GetOperand(labels) };
+	vector<uint8_t> ByteOperandInstructionDescriptor::GetOperationCodes(const Labels& labels) {
+		return vector<uint8_t> { GetOpCode(OpCodeEntry(GetInstructionType(), GetAddressMode(), Operator::None)), GetOperand(labels) };
 	}
 }

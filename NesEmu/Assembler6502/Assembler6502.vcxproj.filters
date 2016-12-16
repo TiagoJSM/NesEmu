@@ -159,6 +159,9 @@
     <ClInclude Include="CompilationResult.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ImmediateInstructionParser.h">
+      <Filter>Header Files\LineParsers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyModule.cpp">

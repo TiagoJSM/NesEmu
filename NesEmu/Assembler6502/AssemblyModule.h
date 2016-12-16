@@ -56,5 +56,6 @@ namespace Assembler6502 {
 		vector<string> RemoveEmptyLinesAndTrim(const vector<string>& lines);
 		vector<string> ValidateUnknownLines(const vector<string>& lines);
 		Labels CollectLabels(const vector<string>& lines, const uint16_t baseAddress);
+		BaseInstructionParser* GetParser(const string& line);
 	};
 }

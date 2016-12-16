@@ -70,6 +70,7 @@ namespace Assembler6502 {
 	{
 		None,
 		Immediate,
+		Accumulator,
 		ZeroPage,
 		Absolute,
 		Indirect

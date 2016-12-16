@@ -117,6 +117,23 @@ namespace Assembler6502 {
 
 	Labels AssemblyModule::CollectLabels(const vector<string>& lines, const uint16_t baseAddress) {
 		auto currentAddress = baseAddress;
-		return Labels();
+		Labels labels;
+		for (auto iterator = lines.begin(); iterator != lines.end(); iterator++) {
+			if (_labelParser.CanParse(*iterator)) {
+				auto name = _labelParser.Parse(*iterator);
+				labels.AddLabel(name, currentAddress);
+				continue;
+			}
+			auto parser = GetParser(*iterator);
+			auto descriptor = parser->Parse(*iterator);
+			currentAddress += descriptor->GetInstructionSize();
+		}
+
+		return labels;
+	}
+
+	BaseInstructionParser* AssemblyModule::GetParser(const string& line) {
+		return from(_instructionParsers)
+			>> first([&](BaseInstructionParser* parser) { return parser->CanParse(line); });
 	}
 }

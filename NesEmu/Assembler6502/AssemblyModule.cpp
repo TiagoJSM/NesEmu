@@ -8,6 +8,8 @@ namespace Assembler6502 {
 		_unknownLinesValidators = {
 			[&](const string& line) {return _labelParser.CanParse(line); },
 
+			[&](const string& line) {return _parameterlessParser.CanParse(line); },
+
 			[&](const string& line) {return _immediateParser.CanParse(line); },
 
 			[&](const string& line) {return _zeroPageParser.CanParse(line); },
@@ -24,6 +26,7 @@ namespace Assembler6502 {
 		};
 
 		_instructionParsers = {
+			&_parameterlessParser,
 			&_immediateParser,
 			&_zeroPageParser,
 			&_zeroPageXParser,
@@ -86,12 +89,15 @@ namespace Assembler6502 {
 
 	vector<string> AssemblyModule::RemoveMacros(const vector<string>& lines) {
 		auto linesWithoutMacros = lines;
+
 		linesWithoutMacros
 			.erase(
 				remove_if(
 					linesWithoutMacros.begin(), 
 					linesWithoutMacros.end(), 
-					[&](string line) { return _macroParser.CanParse(line); }));
+					[&](string line) { return _macroParser.CanParse(line); }),
+				linesWithoutMacros.end());
+
 		return linesWithoutMacros;
 	}
 

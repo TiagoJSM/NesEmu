@@ -50,10 +50,10 @@ int main() {
 		"decrement:",
 		"DEX",
 		"STX $0200",
-		"CPX #$03"
-		"BNE decrement"
-		"STX $0201"
-		"BRK"
+		"CPX #$03",
+		"BNE decrement",
+		"STX $0201",
+		"BRK",
 	});
 
 	auto compiled2 = module2.Compile(0x600);

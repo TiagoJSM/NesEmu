@@ -2,7 +2,7 @@
 
 namespace Assembler6502 {
 	MacroParser::MacroParser() {
-		_macroFormat = regex("#define[ |\t]+\\w+[ |\t]+[^\\s|^\t]+$");
+		_macroFormat = regex("define[ |\t]+\\w+[ |\t]+[^\\s|^\t]+$");
 	}
 
 	bool MacroParser::CanParse(const string& intruction) {

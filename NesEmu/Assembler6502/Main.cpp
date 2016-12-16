@@ -31,13 +31,13 @@ int main() {
 	auto data = zeroPageParsed->GetOperationCodes(labels);
 
 	MacroParser macroParser;
-	auto canParseMacro = macroParser.CanParse("#define Val $21");
-	macroParser.Parse("#define Val $21", macros);
+	auto canParseMacro = macroParser.CanParse("define Val $21");
+	macroParser.Parse("define Val $21", macros);
 
 	auto preprocessed = macros.Replace("lda Val, $4");
 
 	AssemblyModule module1(vector<string> {
-			"#define VAL $44",
+			"define VAL $44",
 			"",
 			"  LDA VAL, X",
 			"dum dum"

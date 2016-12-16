@@ -8,6 +8,7 @@
 #include "StringHelpers.h"
 #include "LabelParser.h"
 #include "ParameterlessInstructionParser.h"
+#include "AccumulatorInstructionParser.h"
 #include "ImmediateInstructionParser.h"
 #include "ZeroPageInstructionParser.h"
 #include "ZeroPageXInstructionParser.h"
@@ -38,6 +39,7 @@ namespace Assembler6502 {
 		LabelParser _labelParser;
 		MacroParser _macroParser;
 		ParameterlessInstructionParser _parameterlessParser;
+		AccumulatorInstructionParser _accumulatorParser;
 		ImmediateInstructionParser _immediateParser;
 		ZeroPageInstructionParser _zeroPageParser;
 		ZeroPageXInstructionParser _zeroPageXParser;

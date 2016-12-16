@@ -9,6 +9,7 @@ namespace Assembler6502 {
 			[&](const string& line) {return _labelParser.CanParse(line); },
 
 			[&](const string& line) {return _parameterlessParser.CanParse(line); },
+			[&](const string& line) {return _accumulatorParser.CanParse(line); },
 
 			[&](const string& line) {return _immediateParser.CanParse(line); },
 
@@ -27,6 +28,7 @@ namespace Assembler6502 {
 
 		_instructionParsers = {
 			&_parameterlessParser,
+			&_accumulatorParser,
 			&_immediateParser,
 			&_zeroPageParser,
 			&_zeroPageXParser,

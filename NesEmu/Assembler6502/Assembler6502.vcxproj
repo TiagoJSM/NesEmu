@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AccumulatorInstructionParser.h" />
     <ClInclude Include="BaseIndirectInstructionParser.h" />
     <ClInclude Include="BaseParser.h" />
     <ClInclude Include="CompilationResult.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="ZeroPageYInstructionParser.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AccumulatorInstructionParser.cpp" />
     <ClCompile Include="BaseParser.cpp" />
     <ClCompile Include="CompilationResult.cpp" />
     <ClCompile Include="IndirectInstructionParser.cpp" />

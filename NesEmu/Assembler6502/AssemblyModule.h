@@ -16,6 +16,7 @@
 #include "AbsoluteInstructionParser.h"
 #include "AbsoluteXInstructionParser.h"
 #include "AbsoluteYInstructionParser.h"
+#include "CompilationResult.h"
 
 #include "cpplinq.hpp"
 
@@ -27,10 +28,25 @@ namespace Assembler6502 {
 	public:
 		AssemblyModule(const vector<string>& intructionLines);
 
-		vector<uint8_t> Compile();
+		CompilationResult Compile(const uint16_t baseAddress = 0);
 	
 	private:
 		vector<string> _intructionLines;
+
+		LabelParser _labelParser;
+		MacroParser _macroParser;
+		ZeroPageInstructionParser _zeroPageParser;
+		ZeroPageXInstructionParser _zeroPageXParser;
+		ZeroPageYInstructionParser _zeroPageYParser;
+		IndirectInstructionParser _indirectParser;
+		IndirectXInstructionParser _indirectXParser;
+		IndirectYInstructionParser _indirectYParser;
+		AbsoluteInstructionParser _absoluteParser;
+		AbsoluteXInstructionParser _absoluteXParser;
+		AbsoluteYInstructionParser _absoluteYParser;
+
+		vector<function<bool(const string&)>> _unknownLinesValidators;
+		vector<BaseInstructionParser*> _instructionParsers;
 
 		vector<string> RemoveComments();
 		string RemoveSingleLineComment(const string& line);
@@ -38,7 +54,7 @@ namespace Assembler6502 {
 		Macros ProcessMacros(const vector<string>& lines);
 		vector<string> RemoveMacros(const vector<string>& lines);
 		vector<string> RemoveEmptyLinesAndTrim(const vector<string>& lines);
-		void ValidateUnknownInstructions(const vector<string>& lines);
-		Labels CollectLabels(const vector<string>& lines);
+		vector<string> ValidateUnknownLines(const vector<string>& lines);
+		Labels CollectLabels(const vector<string>& lines, const uint16_t baseAddress);
 	};
 }

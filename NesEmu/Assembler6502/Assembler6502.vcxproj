@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="BaseIndirectInstructionParser.h" />
     <ClInclude Include="BaseParser.h" />
+    <ClInclude Include="CompilationResult.h" />
     <ClInclude Include="IndirectInstructionParser.h" />
     <ClInclude Include="IndirectXInstructionParser.h" />
     <ClInclude Include="IndirectYInstructionParser.h" />
@@ -178,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseParser.cpp" />
+    <ClCompile Include="CompilationResult.cpp" />
     <ClCompile Include="IndirectInstructionParser.cpp" />
     <ClCompile Include="IndirectXInstructionParser.cpp" />
     <ClCompile Include="IndirectYInstructionParser.cpp" />

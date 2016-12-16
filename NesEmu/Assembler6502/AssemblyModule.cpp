@@ -4,15 +4,47 @@ namespace Assembler6502 {
 	typedef void(*Validate)(const string&);
 	const char SINGLE_LINE_COMMENT_IDENTIFIER = ';';
 
-	AssemblyModule::AssemblyModule(const vector<string>& intructionLines) :_intructionLines(intructionLines){
+	AssemblyModule::AssemblyModule(const vector<string>& intructionLines) :_intructionLines(intructionLines) {
+		_unknownLinesValidators = {
+			[&](const string& line) {return _labelParser.CanParse(line); },
+
+			[&](const string& line) {return _zeroPageParser.CanParse(line); },
+			[&](const string& line) {return _zeroPageXParser.CanParse(line); },
+			[&](const string& line) {return _zeroPageYParser.CanParse(line); },
+
+			[&](const string& line) {return _indirectParser.CanParse(line); },
+			[&](const string& line) {return _indirectXParser.CanParse(line); },
+			[&](const string& line) {return _indirectYParser.CanParse(line); },
+
+			[&](const string& line) {return _absoluteParser.CanParse(line); },
+			[&](const string& line) {return _absoluteXParser.CanParse(line); },
+			[&](const string& line) {return _absoluteYParser.CanParse(line); },
+		};
+
+		_instructionParsers = {
+			&_zeroPageParser,
+			&_zeroPageXParser,
+			&_zeroPageYParser,
+			&_indirectParser,
+			&_indirectXParser,
+			&_indirectYParser,
+			&_absoluteParser,
+			&_absoluteXParser,
+			&_absoluteYParser,
+		};
 	}
 
-	vector<uint8_t> AssemblyModule::Compile() {
+	CompilationResult AssemblyModule::Compile(const uint16_t baseAddress) {
 		auto uncommented = RemoveComments();
 		auto preProcessedCode = PreProcess(uncommented);
-		ValidateUnknownInstructions(preProcessedCode);
-		auto labels = CollectLabels(preProcessedCode);
-		return vector<uint8_t>();
+		auto invalidLines = ValidateUnknownLines(preProcessedCode);
+
+		if (!invalidLines.empty()) {
+			return CompilationResult(invalidLines);
+		}
+
+		auto labels = CollectLabels(preProcessedCode, baseAddress);
+		return CompilationResult(vector<uint8_t>());
 	}
 
 	vector<string> AssemblyModule::RemoveComments() {
@@ -40,24 +72,22 @@ namespace Assembler6502 {
 
 	Macros AssemblyModule::ProcessMacros(const vector<string>& lines) {
 		Macros macros;
-		MacroParser macroParser;
 		for (auto iterator = lines.begin(); iterator != lines.end(); iterator++) {
-			if (macroParser.CanParse(*iterator)) {
-				macroParser.Parse(*iterator, macros);
+			if (_macroParser.CanParse(*iterator)) {
+				_macroParser.Parse(*iterator, macros);
 			}
 		}
 		return macros;
 	}
 
 	vector<string> AssemblyModule::RemoveMacros(const vector<string>& lines) {
-		MacroParser macroParser;
 		auto linesWithoutMacros = lines;
 		linesWithoutMacros
 			.erase(
 				remove_if(
 					linesWithoutMacros.begin(), 
 					linesWithoutMacros.end(), 
-					[&macroParser](string line) { return macroParser.CanParse(line); }));
+					[&](string line) { return _macroParser.CanParse(line); }));
 		return linesWithoutMacros;
 	}
 
@@ -72,50 +102,21 @@ namespace Assembler6502 {
 			>> to_vector();
 	}
 
-	void AssemblyModule::ValidateUnknownInstructions(const vector<string>& lines) {
-		LabelParser labelParser;
-		ZeroPageInstructionParser zeroPageParser;
-		ZeroPageXInstructionParser zeroPageXParser;
-		ZeroPageYInstructionParser zeroPageYParser;
-		IndirectInstructionParser indirectParser;
-		IndirectXInstructionParser indirectXParser;
-		IndirectYInstructionParser indirectYParser;
-		AbsoluteInstructionParser absoluteParser;
-		AbsoluteXInstructionParser absoluteXParser;
-		AbsoluteYInstructionParser absoluteYParser;
-		
-		vector<function<bool(const string&)>> validators = {
-			[&](const string& line) {return labelParser.CanParse(line); },
-
-			[&](const string& line) {return zeroPageParser.CanParse(line); },
-			[&](const string& line) {return zeroPageXParser.CanParse(line); },
-			[&](const string& line) {return zeroPageYParser.CanParse(line); },
-
-			[&](const string& line) {return indirectParser.CanParse(line); },
-			[&](const string& line) {return indirectXParser.CanParse(line); },
-			[&](const string& line) {return indirectYParser.CanParse(line); },
-
-			[&](const string& line) {return absoluteParser.CanParse(line); },
-			[&](const string& line) {return absoluteXParser.CanParse(line); },
-			[&](const string& line) {return absoluteYParser.CanParse(line); },
-		};
-
+	vector<string> AssemblyModule::ValidateUnknownLines(const vector<string>& lines) {
 		auto isValid = [&](const string& line) {
-			return from(validators) >> any([&](function<bool(const string&)> validator) { return validator(line); });
+			return from(_unknownLinesValidators) >> any([&](function<bool(const string&)> validator) { return validator(line); });
 		};
 
-		auto valid =
+		auto invalidLines =
 			from(lines)
-			>> any([&](const string& line) {
-				return isValid(line); }
-		);
+			>> where([&](const string& line) { return !isValid(line); })
+			>> to_vector();
 
-		if (!valid) {
-			cout << "error" << endl;
-		}
+		return invalidLines;
 	}
 
-	Labels AssemblyModule::CollectLabels(const vector<string>& lines) {
+	Labels AssemblyModule::CollectLabels(const vector<string>& lines, const uint16_t baseAddress) {
+		auto currentAddress = baseAddress;
 		return Labels();
 	}
 }

@@ -15,6 +15,6 @@ namespace Assembler6502 {
 		return GetOperand(labels) & 0xFF;
 	}
 	uint8_t BaseWordOperandInstructionDescriptor::GetOperandHighByte(const Labels& labels) {
-		return (GetOperand(labels) >> 0xF) & 0xFF;
+		return (GetOperand(labels) >> 8) & 0xFF;
 	}
 }

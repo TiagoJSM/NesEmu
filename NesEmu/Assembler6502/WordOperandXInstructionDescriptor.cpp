@@ -7,7 +7,14 @@ namespace Assembler6502 {
 
 	}
 
-	vector<uint8_t> WordOperandXInstructionDescriptor::GetOperationCodes(const Labels& labels) {
-		return vector<uint8_t> { GetOpCode(OpCodeEntry(GetInstructionType(), GetAddressMode(), Operator::X)), GetOperandLowByte(labels), GetOperandHighByte(labels) };
+	vector<uint8_t> WordOperandXInstructionDescriptor::GetOperationCodes(const OperationCodeContext& context) {
+		return vector<uint8_t> { 
+			GetOpCode(
+				OpCodeEntry(
+					GetInstructionType(), 
+					GetAddressMode(), 
+					Operator::X)), 
+				GetOperandLowByte(context.GetLabels()),
+				GetOperandHighByte(context.GetLabels()) };
 	}
 }

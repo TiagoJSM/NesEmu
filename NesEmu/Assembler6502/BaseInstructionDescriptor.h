@@ -97,17 +97,28 @@ namespace Assembler6502 {
 	{
 		bool operator()(const OpCodeEntry& e1, const OpCodeEntry& e2) const
 		{
-			return 
-				((int)e1.instructionType - (int)e2.instructionType) < 0 &&
-				((int)e1.addressingMode - (int)e2.addressingMode) < 0 &&
-				((int)e1.oper - (int)e2.oper) < 0;
+			return
+				tie(e1.instructionType, e1.addressingMode, e1.oper) < tie(e2.instructionType, e2.addressingMode, e2.oper);
 		}
+	};
+
+	class OperationCodeContext {
+	public:
+		OperationCodeContext(Labels labels, uint16_t currentInstructionAddress);
+
+		const Labels& GetLabels() const;
+		void SetCurrentInstructionAddress(uint16_t baseAddress);
+		uint16_t GetCurrentInstructionAddress() const;
+
+	private:
+		Labels _labels;
+		uint16_t _currentInstructionAddress;
 	};
 
 	class BaseInstructionDescriptor {
 	public:
 		virtual uint8_t GetInstructionSize() = 0;
-		virtual vector<uint8_t> GetOperationCodes(const Labels& labels) = 0;
+		virtual vector<uint8_t> GetOperationCodes(const OperationCodeContext& context) = 0;
 	protected:
 		InstructionType GetInstructionType(const string& intruction);
 		string GetInstruction(InstructionType intruction);

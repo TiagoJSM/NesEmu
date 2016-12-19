@@ -52,7 +52,7 @@ namespace Assembler6502 {
 		}
 
 		auto labels = CollectLabels(preProcessedCode, baseAddress);
-		auto byteCode = GenerateByteCode(preProcessedCode, labels);
+		auto byteCode = GenerateByteCode(preProcessedCode, labels, baseAddress);
 		return CompilationResult(byteCode);
 	}
 
@@ -146,15 +146,25 @@ namespace Assembler6502 {
 
 	BaseInstructionParser* AssemblyModule::GetParser(const string& line) {
 		return from(_instructionParsers)
-			>> first([&](BaseInstructionParser* parser) { return parser->CanParse(line); });
+			>> first_or_default([&](BaseInstructionParser* parser) { return parser->CanParse(line); });
 	}
 
-	vector<uint8_t> AssemblyModule::GenerateByteCode(const vector<string>& lines, const Labels& labels) {
+	vector<uint8_t> AssemblyModule::GenerateByteCode(
+		const vector<string>& lines, 
+		const Labels& labels,
+		uint16_t baseAddress) 
+	{
 		vector<uint8_t> byteCode;
-		for (auto iterator = lines.begin(); iterator != lines.end(); iterator++) {
-			auto parser = GetParser(*iterator);
+		OperationCodeContext context(labels, baseAddress);
+
+		for (auto &line : lines) {
+			auto parser = GetParser(line);
 			if (parser != nullptr) {
-				auto descriptor = parser->Parse(*iterator);
+				auto descriptor = parser->Parse(line);
+				auto opCodes = descriptor->GetOperationCodes(context);
+				byteCode.insert(end(byteCode), begin(opCodes), end(opCodes));
+				context.SetCurrentInstructionAddress(
+					context.GetCurrentInstructionAddress() + descriptor->GetInstructionSize());
 			}
 		}
 

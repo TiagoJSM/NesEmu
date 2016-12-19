@@ -12,6 +12,7 @@ using namespace Assembler6502;
 int main() {
 	Labels labels;
 	Macros macros;
+	OperationCodeContext context(labels, 0);
 
 	ZeroPageYInstructionParser parser1;
 	auto canParseY = parser1.CanParse("lda $aa,y");
@@ -28,7 +29,10 @@ int main() {
 	ZeroPageInstructionParser parser4;
 	auto canParseZeroPage = parser4.CanParse("EOR $44");
 	auto zeroPageParsed = (ByteOperandInstructionDescriptor*)parser4.Parse("EOR $40");
-	auto data = zeroPageParsed->GetOperationCodes(labels);
+	auto data = zeroPageParsed->GetOperationCodes(context);
+
+	ByteOperandInstructionDescriptor descriptor("LDX", AddressingMode::Immediate, InstructionToken("44"));
+	auto codes = descriptor.GetOperationCodes(context);
 
 	MacroParser macroParser;
 	auto canParseMacro = macroParser.CanParse("define Val $21");
@@ -57,7 +61,6 @@ int main() {
 	});
 
 	auto compiled2 = module2.Compile(0x600);
-
 
 	return 0;
 }

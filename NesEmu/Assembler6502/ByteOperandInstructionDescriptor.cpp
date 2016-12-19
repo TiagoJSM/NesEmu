@@ -7,7 +7,7 @@ namespace Assembler6502 {
 
 	}
 
-	vector<uint8_t> ByteOperandInstructionDescriptor::GetOperationCodes(const Labels& labels) {
-		return vector<uint8_t> { GetOpCode(OpCodeEntry(GetInstructionType(), GetAddressMode(), Operator::None)), GetOperand(labels) };
+	vector<uint8_t> ByteOperandInstructionDescriptor::GetOperationCodes(const OperationCodeContext& context) {
+		return vector<uint8_t> { GetOpCode(OpCodeEntry(GetInstructionType(), GetAddressMode(), Operator::None)), GetOperand(context.GetLabels()) };
 	}
 }

@@ -4,6 +4,19 @@ namespace Assembler6502 {
 	OpCodeEntry::OpCodeEntry(InstructionType instructionType, AddressingMode addressingMode, Operator oper) 
 		:instructionType(instructionType), addressingMode(addressingMode), oper(oper) {}
 
+	OperationCodeContext::OperationCodeContext(Labels labels, uint16_t currentInstructionAddress) 
+		:_labels(labels), _currentInstructionAddress(currentInstructionAddress) { }
+
+	const Labels& OperationCodeContext::GetLabels() const {
+		return _labels;
+	}
+	void OperationCodeContext::SetCurrentInstructionAddress(uint16_t baseAddress) {
+		_currentInstructionAddress = baseAddress;
+	}
+	uint16_t OperationCodeContext::GetCurrentInstructionAddress() const {
+		return _currentInstructionAddress;
+	}
+
 	map<string, InstructionType> BaseInstructionDescriptor::_instructionMapping = {
 		{ "ADC", InstructionType::ADC },
 		{ "AND", InstructionType::AND },

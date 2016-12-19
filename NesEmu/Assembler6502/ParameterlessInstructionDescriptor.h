@@ -12,7 +12,7 @@ namespace Assembler6502 {
 	public:
 		ParameterlessInstructionDescriptor(const string& instruction, const AddressingMode addressMode);
 		uint8_t GetInstructionSize() override;
-		vector<uint8_t> GetOperationCodes(const Labels& labels) override;
+		vector<uint8_t> GetOperationCodes(const OperationCodeContext& context) override;
 	private:
 		string _instruction;
 		AddressingMode _addressMode;

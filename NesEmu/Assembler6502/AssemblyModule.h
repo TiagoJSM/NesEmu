@@ -63,6 +63,6 @@ namespace Assembler6502 {
 		vector<string> ValidateUnknownLines(const vector<string>& lines);
 		Labels CollectLabels(const vector<string>& lines, const uint16_t baseAddress);
 		BaseInstructionParser* GetParser(const string& line);
-		vector<uint8_t> GenerateByteCode(const vector<string>& lines, const Labels& labels);
+		vector<uint8_t> GenerateByteCode(const vector<string>& lines, const Labels& labels, uint16_t baseAddress);
 	};
 }

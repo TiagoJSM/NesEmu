@@ -28,6 +28,9 @@ namespace Assembler6502 {
 			if (labels.Contains(s)) {
 				return static_cast<TOperand>(labels.GetLabelValue(_operand.AsString()));
 			}
+			return GetOperand();
+		}
+		TOperand GetOperand() {
 			return _operand.GetValue<TOperand>();
 		}
 

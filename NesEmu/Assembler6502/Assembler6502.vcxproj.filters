@@ -165,6 +165,12 @@
     <ClInclude Include="AccumulatorInstructionParser.h">
       <Filter>Header Files\LineParsers</Filter>
     </ClInclude>
+    <ClInclude Include="BranchInstructionParser.h">
+      <Filter>Header Files\LineParsers</Filter>
+    </ClInclude>
+    <ClInclude Include="BranchInstructionDescriptor.h">
+      <Filter>Header Files\InstructionDescriptors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyModule.cpp">
@@ -253,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="AccumulatorInstructionParser.cpp">
       <Filter>Source Files\LineParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchInstructionParser.cpp">
+      <Filter>Source Files\LineParsers</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchInstructionDescriptor.cpp">
+      <Filter>Source Files\InstructionDescriptors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

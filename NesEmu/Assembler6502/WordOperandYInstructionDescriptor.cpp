@@ -14,7 +14,7 @@ namespace Assembler6502 {
 					GetInstructionType(),
 					GetAddressMode(),
 					Operator::Y)),
-				GetOperandLowByte(context.GetLabels()),
-				GetOperandHighByte(context.GetLabels()) };
+				GetOperandLowByte(),
+				GetOperandHighByte() };
 	}
 }

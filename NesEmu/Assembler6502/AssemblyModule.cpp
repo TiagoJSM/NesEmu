@@ -10,6 +10,7 @@ namespace Assembler6502 {
 
 			[&](const string& line) {return _parameterlessParser.CanParse(line); },
 			[&](const string& line) {return _accumulatorParser.CanParse(line); },
+			[&](const string& line) {return _branchParser.CanParse(line); },
 
 			[&](const string& line) {return _immediateParser.CanParse(line); },
 
@@ -29,6 +30,7 @@ namespace Assembler6502 {
 		_instructionParsers = {
 			&_parameterlessParser,
 			&_accumulatorParser,
+			&_branchParser,
 			&_immediateParser,
 			&_zeroPageParser,
 			&_zeroPageXParser,
@@ -130,14 +132,14 @@ namespace Assembler6502 {
 	Labels AssemblyModule::CollectLabels(const vector<string>& lines, const uint16_t baseAddress) {
 		auto currentAddress = baseAddress;
 		Labels labels;
-		for (auto iterator = lines.begin(); iterator != lines.end(); iterator++) {
-			if (_labelParser.CanParse(*iterator)) {
-				auto name = _labelParser.Parse(*iterator);
+		for (auto &line : lines) {
+			if (_labelParser.CanParse(line)) {
+				auto name = _labelParser.Parse(line);
 				labels.AddLabel(name, currentAddress);
 				continue;
 			}
-			auto parser = GetParser(*iterator);
-			auto descriptor = parser->Parse(*iterator);
+			auto parser = GetParser(line);
+			auto descriptor = parser->Parse(line);
 			currentAddress += descriptor->GetInstructionSize();
 		}
 

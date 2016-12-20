@@ -11,7 +11,7 @@ namespace Assembler6502 {
 		BaseWordOperandInstructionDescriptor(const string& instruction, const AddressingMode addressMode, const InstructionToken operand);
 		uint8_t GetInstructionSize() override;
 	protected:
-		uint8_t GetOperandLowByte(const Labels& labels);
-		uint8_t GetOperandHighByte(const Labels& labels);
+		uint8_t GetOperandLowByte();
+		uint8_t GetOperandHighByte();
 	};
 }

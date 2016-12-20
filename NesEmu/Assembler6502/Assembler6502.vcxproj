@@ -146,6 +146,8 @@
     <ClInclude Include="AccumulatorInstructionParser.h" />
     <ClInclude Include="BaseIndirectInstructionParser.h" />
     <ClInclude Include="BaseParser.h" />
+    <ClInclude Include="BranchInstructionDescriptor.h" />
+    <ClInclude Include="BranchInstructionParser.h" />
     <ClInclude Include="CompilationResult.h" />
     <ClInclude Include="ImmediateInstructionParser.h" />
     <ClInclude Include="IndirectInstructionParser.h" />
@@ -182,6 +184,8 @@
   <ItemGroup>
     <ClCompile Include="AccumulatorInstructionParser.cpp" />
     <ClCompile Include="BaseParser.cpp" />
+    <ClCompile Include="BranchInstructionDescriptor.cpp" />
+    <ClCompile Include="BranchInstructionParser.cpp" />
     <ClCompile Include="CompilationResult.cpp" />
     <ClCompile Include="IndirectInstructionParser.cpp" />
     <ClCompile Include="IndirectXInstructionParser.cpp" />

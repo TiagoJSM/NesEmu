@@ -11,10 +11,10 @@ namespace Assembler6502 {
 		return 3;
 	}
 
-	uint8_t BaseWordOperandInstructionDescriptor::GetOperandLowByte(const Labels& labels) {
-		return GetOperand(labels) & 0xFF;
+	uint8_t BaseWordOperandInstructionDescriptor::GetOperandLowByte() {
+		return GetOperand() & 0xFF;
 	}
-	uint8_t BaseWordOperandInstructionDescriptor::GetOperandHighByte(const Labels& labels) {
-		return (GetOperand(labels) >> 8) & 0xFF;
+	uint8_t BaseWordOperandInstructionDescriptor::GetOperandHighByte() {
+		return (GetOperand() >> 8) & 0xFF;
 	}
 }

@@ -8,6 +8,6 @@ namespace Assembler6502 {
 	}
 
 	vector<uint8_t> ByteOperandXInstructionDescriptor::GetOperationCodes(const OperationCodeContext& context) {
-		return vector<uint8_t> { GetOpCode(OpCodeEntry(GetInstructionType(), GetAddressMode(), Operator::X)), GetOperand(context.GetLabels()) };
+		return vector<uint8_t> { GetOpCode(OpCodeEntry(GetInstructionType(), GetAddressMode(), Operator::X)), GetOperand() };
 	}
 }

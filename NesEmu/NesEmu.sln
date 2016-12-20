@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NesEmu", "NesEmu\NesEmu.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assembler6502", "Assembler6502\Assembler6502.vcxproj", "{798ECE35-EB5F-4427-8BA3-EE08CAD0DB01}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{976A6ED0-AA47-4B94-A4CC-007AD539222E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assembler6502Tests", "Assembler6502Tests\Assembler6502Tests.vcxproj", "{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,8 +35,19 @@ Global
 		{798ECE35-EB5F-4427-8BA3-EE08CAD0DB01}.Release|x64.Build.0 = Release|x64
 		{798ECE35-EB5F-4427-8BA3-EE08CAD0DB01}.Release|x86.ActiveCfg = Release|Win32
 		{798ECE35-EB5F-4427-8BA3-EE08CAD0DB01}.Release|x86.Build.0 = Release|Win32
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}.Debug|x64.ActiveCfg = Debug|x64
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}.Debug|x64.Build.0 = Debug|x64
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}.Debug|x86.ActiveCfg = Debug|Win32
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}.Debug|x86.Build.0 = Debug|Win32
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}.Release|x64.ActiveCfg = Release|x64
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}.Release|x64.Build.0 = Release|x64
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}.Release|x86.ActiveCfg = Release|Win32
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20F3B3F8-AFA3-4315-B60E-83B86273E7DD} = {976A6ED0-AA47-4B94-A4CC-007AD539222E}
 	EndGlobalSection
 EndGlobal

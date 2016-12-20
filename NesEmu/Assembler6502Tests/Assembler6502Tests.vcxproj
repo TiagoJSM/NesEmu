@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\cpplinq.2013.08.10\build\native\cpplinq.props" Condition="Exists('..\packages\cpplinq.2013.08.10\build\native\cpplinq.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -20,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{798ECE35-EB5F-4427-8BA3-EE08CAD0DB01}</ProjectGuid>
+    <ProjectGuid>{20F3B3F8-AFA3-4315-B60E-83B86273E7DD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Assembler6502</RootNamespace>
+    <RootNamespace>Assembler6502Tests</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -40,7 +39,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -89,6 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,6 +102,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -117,6 +118,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +136,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,89 +146,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AccumulatorInstructionParser.h" />
-    <ClInclude Include="BaseIndirectInstructionParser.h" />
-    <ClInclude Include="BaseParser.h" />
-    <ClInclude Include="BranchInstructionDescriptor.h" />
-    <ClInclude Include="BranchInstructionParser.h" />
-    <ClInclude Include="CompilationResult.h" />
-    <ClInclude Include="ImmediateInstructionParser.h" />
-    <ClInclude Include="IndirectInstructionParser.h" />
-    <ClInclude Include="IndirectXInstructionParser.h" />
-    <ClInclude Include="IndirectYInstructionParser.h" />
-    <ClInclude Include="LabelParser.h" />
-    <ClInclude Include="StringHelpers.h" />
-    <ClInclude Include="Symbols.h" />
-    <ClInclude Include="MacroParser.h" />
-    <ClInclude Include="WordOperandInstructionDescriptor.h" />
-    <ClInclude Include="AbsoluteInstructionParser.h" />
-    <ClInclude Include="WordOperandXInstructionDescriptor.h" />
-    <ClInclude Include="AbsoluteXInstructionParser.h" />
-    <ClInclude Include="WordOperandYInstructionDescriptor.h" />
-    <ClInclude Include="AbsoluteYInstructionParser.h" />
-    <ClInclude Include="AssemblyModule.h" />
-    <ClInclude Include="BaseAbsoluteInstructionParser.h" />
-    <ClInclude Include="BaseInstructionDescriptor.h" />
-    <ClInclude Include="BaseInstructionParser.h" />
-    <ClInclude Include="BaseZeroPageInstructionParser.h" />
-    <ClInclude Include="BaseByteOperandInstructionDescriptor.h" />
-    <ClInclude Include="InstructionToken.h" />
-    <ClInclude Include="TemplatedOperandInstructionDescriptor.h" />
-    <ClInclude Include="ParameterlessInstructionDescriptor.h" />
-    <ClInclude Include="ParameterlessInstructionParser.h" />
-    <ClInclude Include="BaseWordOperandInstructionDescriptor.h" />
-    <ClInclude Include="ByteOperandInstructionDescriptor.h" />
-    <ClInclude Include="ZeroPageInstructionParser.h" />
-    <ClInclude Include="ByteOperandXInstructionDescriptor.h" />
-    <ClInclude Include="ZeroPageXInstructionParser.h" />
-    <ClInclude Include="ByteOperandYInstructionDescriptor.h" />
-    <ClInclude Include="ZeroPageYInstructionParser.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AccumulatorInstructionParser.cpp" />
-    <ClCompile Include="BaseParser.cpp" />
-    <ClCompile Include="BranchInstructionDescriptor.cpp" />
-    <ClCompile Include="BranchInstructionParser.cpp" />
-    <ClCompile Include="CompilationResult.cpp" />
-    <ClCompile Include="IndirectInstructionParser.cpp" />
-    <ClCompile Include="IndirectXInstructionParser.cpp" />
-    <ClCompile Include="IndirectYInstructionParser.cpp" />
-    <ClCompile Include="LabelParser.cpp" />
-    <ClCompile Include="MacroParser.cpp" />
-    <ClCompile Include="WordOperandInstructionDescriptor.cpp" />
-    <ClCompile Include="AbsoluteInstructionParser.cpp" />
-    <ClCompile Include="WordOperandXInstructionDescriptor.cpp" />
-    <ClCompile Include="AbsoluteXInstructionParser.cpp" />
-    <ClCompile Include="WordOperandYInstructionDescriptor.cpp" />
-    <ClCompile Include="AbsoluteYInstructionParser.cpp" />
-    <ClCompile Include="AssemblyModule.cpp" />
-    <ClCompile Include="BaseInstructionDescriptor.cpp" />
-    <ClCompile Include="BaseInstructionParser.cpp" />
-    <ClCompile Include="BaseByteOperandInstructionDescriptor.cpp" />
-    <ClCompile Include="InstructionToken.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ParameterlessInstructionDescriptor.cpp" />
-    <ClCompile Include="ParameterlessInstructionParser.cpp" />
-    <ClCompile Include="BaseWordOperandInstructionDescriptor.cpp" />
-    <ClCompile Include="ByteOperandInstructionDescriptor.cpp" />
-    <ClCompile Include="ZeroPageInstructionParser.cpp" />
-    <ClCompile Include="ByteOperandXInstructionDescriptor.cpp" />
-    <ClCompile Include="ZeroPageXInstructionParser.cpp" />
-    <ClCompile Include="ByteOperandYInstructionDescriptor.cpp" />
-    <ClCompile Include="ZeroPageYInstructionParser.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ParsingTests.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Assembler6502\Assembler6502.vcxproj">
+      <Project>{798ece35-eb5f-4427-8ba3-ee08cad0db01}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\cpplinq.2013.08.10\build\native\cpplinq.targets" Condition="Exists('..\packages\cpplinq.2013.08.10\build\native\cpplinq.targets')" />
+    <Import Project="..\packages\googletest.1.8.0.0\build\native\googletest.targets" Condition="Exists('..\packages\googletest.1.8.0.0\build\native\googletest.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\cpplinq.2013.08.10\build\native\cpplinq.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpplinq.2013.08.10\build\native\cpplinq.props'))" />
-    <Error Condition="!Exists('..\packages\cpplinq.2013.08.10\build\native\cpplinq.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpplinq.2013.08.10\build\native\cpplinq.targets'))" />
+    <Error Condition="!Exists('..\packages\googletest.1.8.0.0\build\native\googletest.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\googletest.1.8.0.0\build\native\googletest.targets'))" />
   </Target>
 </Project>

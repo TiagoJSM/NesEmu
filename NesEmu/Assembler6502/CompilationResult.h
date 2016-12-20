@@ -11,6 +11,8 @@ namespace Assembler6502 {
 		CompilationResult(vector<string> errorLines);
 		
 		bool Successful();
+		vector<uint8_t> GetCompiledByteCode();
+		vector<string> GetErrorLines();
 	private:
 		vector<uint8_t> _compiledByteCode; 
 		vector<string> _errorLines;

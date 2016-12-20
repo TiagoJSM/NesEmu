@@ -10,4 +10,12 @@ namespace Assembler6502 {
 	bool CompilationResult::Successful() {
 		return _errorLines.empty();
 	}
+
+	vector<uint8_t> CompilationResult::GetCompiledByteCode() {
+		return _compiledByteCode;
+	}
+
+	vector<string> CompilationResult::GetErrorLines() {
+		return _errorLines;
+	}
 }

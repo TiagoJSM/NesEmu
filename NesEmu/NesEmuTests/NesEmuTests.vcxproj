@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\cpplinq.2013.08.10\build\native\cpplinq.props" Condition="Exists('..\packages\cpplinq.2013.08.10\build\native\cpplinq.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,9 +20,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0F1BDB37-2E7C-428B-A30E-5839FAAA15BB}</ProjectGuid>
+    <ProjectGuid>{640A69F7-9B56-4B42-A563-D93816F3CFCF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>NesEmu</RootNamespace>
+    <RootNamespace>NesEmuTests</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -39,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -88,6 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,6 +103,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +119,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,6 +137,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,31 +147,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BaseAddressResourceMapping.h" />
-    <ClInclude Include="Decoder.h" />
-    <ClInclude Include="Emulator.h" />
-    <ClInclude Include="Macros.h" />
-    <ClInclude Include="Memory.h" />
-    <ClInclude Include="MemoryMap.h" />
-    <ClInclude Include="MemoryResourceMapping.h" />
-    <ClInclude Include="OPCodes.h" />
-    <ClInclude Include="Registers.h" />
-    <ClInclude Include="StatusFlags.h" />
-    <ClInclude Include="UtilitaryFunctions.h" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BaseAddressResourceMapping.cpp" />
-    <ClCompile Include="Decoder.cpp" />
-    <ClCompile Include="Emulator.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Memory.cpp" />
-    <ClCompile Include="MemoryMap.cpp" />
-    <ClCompile Include="MemoryResourceMapping.cpp" />
-    <ClCompile Include="OPCodes.cpp" />
-    <ClCompile Include="Registers.cpp" />
-    <ClCompile Include="UtilitaryFunctions.cpp" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Assembler6502\Assembler6502.vcxproj">
+      <Project>{798ece35-eb5f-4427-8ba3-ee08cad0db01}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\NesEmu\NesEmu.vcxproj">
+      <Project>{0f1bdb37-2e7c-428b-a30e-5839faaa15bb}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EmulatorTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\googletest.1.8.0.0\build\native\googletest.targets" Condition="Exists('..\packages\googletest.1.8.0.0\build\native\googletest.targets')" />
+    <Import Project="..\packages\cpplinq.2013.08.10\build\native\cpplinq.targets" Condition="Exists('..\packages\cpplinq.2013.08.10\build\native\cpplinq.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\googletest.1.8.0.0\build\native\googletest.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\googletest.1.8.0.0\build\native\googletest.targets'))" />
+    <Error Condition="!Exists('..\packages\cpplinq.2013.08.10\build\native\cpplinq.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpplinq.2013.08.10\build\native\cpplinq.props'))" />
+    <Error Condition="!Exists('..\packages\cpplinq.2013.08.10\build\native\cpplinq.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpplinq.2013.08.10\build\native\cpplinq.targets'))" />
+  </Target>
 </Project>

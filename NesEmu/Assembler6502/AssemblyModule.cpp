@@ -55,7 +55,7 @@ namespace Assembler6502 {
 
 		auto labels = CollectLabels(preProcessedCode, baseAddress);
 		auto byteCode = GenerateByteCode(preProcessedCode, labels, baseAddress);
-		return CompilationResult(byteCode);
+		return CompilationResult(byteCode, baseAddress);
 	}
 
 	vector<string> AssemblyModule::RemoveComments() {

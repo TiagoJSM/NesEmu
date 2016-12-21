@@ -1,8 +1,8 @@
 #include "CompilationResult.h"
 
 namespace Assembler6502 {
-	CompilationResult::CompilationResult(vector<uint8_t> compiledByteCode)
-		: _compiledByteCode(compiledByteCode) {}
+	CompilationResult::CompilationResult(vector<uint8_t> compiledByteCode, uint16_t baseAddress)
+		: _compiledByteCode(compiledByteCode), _baseAddress(baseAddress) {}
 
 	CompilationResult::CompilationResult(vector<string> errorLines)
 		: _errorLines(errorLines) {}
@@ -17,5 +17,9 @@ namespace Assembler6502 {
 
 	vector<string> CompilationResult::GetErrorLines() {
 		return _errorLines;
+	}
+
+	uint16_t CompilationResult::GetBaseAddress() {
+		return _baseAddress;
 	}
 }

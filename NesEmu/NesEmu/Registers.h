@@ -23,6 +23,7 @@ namespace NesEmu {
 		uint16_t PC;
 
 		Registers();
+		Registers(uint8_t A, uint8_t X, uint8_t Y, uint8_t SP, uint8_t P, uint16_t PC);
 
 		bool Carry();
 		bool Zero();
@@ -40,6 +41,16 @@ namespace NesEmu {
 		void SetOverflow(bool set);
 		void SetInterrupt(bool set);
 		void SetDecimal(bool set);
+
+		bool operator==(const Registers& other) {
+			return 
+				A == other.A &&
+				X == other.X &&
+				Y == other.Y &&
+				S == other.S &&
+				P == other.P &&
+				PC == other.PC;
+		}
 
 	private:
 		inline void SetBits(bool condition, uint8_t bitMask);

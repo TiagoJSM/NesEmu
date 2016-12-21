@@ -19,4 +19,12 @@ namespace NesEmu {
 		this->data[address + 1] = (word >> sizeof(uint8_t));
 		this->data[address] = word;
 	}
+
+	void Memory::Load(vector<uint8_t> data, uint16_t baseAddress) {
+		auto address = baseAddress;
+		for (auto d : data) {
+			this->data[address] = d;
+			address++;
+		}
+	}
 }

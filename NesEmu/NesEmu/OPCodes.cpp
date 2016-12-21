@@ -3,18 +3,30 @@
 #define CARRY_VALUE(registers) static_cast<uint8_t>((registers.Carry() ? 1 : 0))
 #define NOT_CARRY_VALUE(registers) static_cast<uint8_t>((registers.Carry() ? 0 : 1))
 
+uint8_t GetByteOperand(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
+	auto operand = memoryMap.GetByte(registers.PC);
+	registers.PC += 1; //next instruction
+	return operand;
+}
+
+uint16_t GetWordOperand(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
+	auto operand = static_cast<int8_t>(memoryMap.GetByte(registers.PC));
+	registers.PC += 2; //next instruction
+	return operand;
+}
+
 uint16_t ZeroPage_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, uint16_t offset = 0) {
-    auto operand = memoryMap.GetByte(registers.PC + 1);
+    auto operand = GetByteOperand(registers, memoryMap);
     return operand + offset;
 }
 
 uint16_t Absolute_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, uint16_t offset = 0) {
-    auto operand = memoryMap.GetWord(registers.PC + 1);
+    auto operand = GetWordOperand(registers, memoryMap);
     return operand + offset;
 }
 
 uint8_t LD_Immediate_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
-	auto operand = static_cast<int8_t>(memoryMap.GetByte(registers.PC + 1));
+	auto operand = static_cast<int8_t>(GetByteOperand(registers, memoryMap));
 	registers.SetNegative(operand);
 	registers.SetZero(operand);
 	return static_cast<uint8_t>(operand);
@@ -48,14 +60,14 @@ void ST_Absolute_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryM
 }
 
 uint16_t GetIndirectXAddress(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	auto address = operand + registers.X;
 	auto indirectAddress = memoryMap.GetWord(address);
 	return indirectAddress;
 }
 
 uint16_t GetIndirectYAddress(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	auto indirectAddress = memoryMap.GetWord(operand) + registers.Y;
 	return indirectAddress;
 }
@@ -304,9 +316,9 @@ void ROL_Absolute_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memory
 }
 
 void ROR_Helper(NesEmu::Registers& registers, uint8_t value) {
-	auto carry = registers.Carry();
+	//auto carry = registers.Carry();
 	auto bit0 = (value & BIT_0_MASK) != 0;
-	auto result = (value >> 1) & (carry << BIT_7_MASK);
+	auto result = (value >> 1) & (CARRY_VALUE(registers) << BIT_7_MASK);
 	registers.SetCarry(bit0);
 	registers.SetZero(result == 0);
 	registers.SetNegative(static_cast<int8_t>(result));
@@ -360,15 +372,18 @@ void Transfer_Helper(NesEmu::Registers& registers, uint8_t registerValue) {
 }
 
 void Branch_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, bool doBranch) {
-	auto value = memoryMap.GetByte(registers.PC + 1);
-	registers.PC -= value;
-	registers.PC -= 2; //ToDo: investigate if this is correct
+	auto value = GetByteOperand(registers, memoryMap);
+	if (!doBranch) {
+		return;
+	}
+	//first convert the value to signed value, and then convert the value (still signed) to 2 byte value
+	registers.PC += static_cast<int16_t>(static_cast<int8_t>(value));
 }
 
 void BIT_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, uint8_t value) {
 	registers.SetZero(static_cast<int8_t>(value & registers.A));
 	registers.SetNegative(static_cast<int8_t>(value & BIT_7_MASK));
-	registers.SetOverflow(static_cast<int8_t>(value & BIT_6_MASK));
+	registers.SetOverflow((value && BIT_6_MASK));
 }
 
 void Push_Helper(NesEmu::Registers& registers, NesEmu::MemoryMap& memoryMap, uint8_t value) {
@@ -530,7 +545,7 @@ void NesEmu::STY_Absolute(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::ADC_Immediate(Registers& registers, MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	ADC_Helper(registers, operand);
 }
 
@@ -567,7 +582,7 @@ void NesEmu::ADC_Indirect_Y(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::AND_Immediate(Registers& registers, MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	AND_Helper(registers, operand);
 }
 
@@ -652,7 +667,7 @@ void NesEmu::BIT_Absolute(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::EOR_Immediate(Registers& registers, MemoryMap& memoryMap) {
-    auto operand = memoryMap.GetByte(registers.PC + 1);
+    auto operand = GetByteOperand(registers, memoryMap);
     EOR_Helper(registers, operand);
 }
 
@@ -698,7 +713,7 @@ void NesEmu::JMP_Indirect(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::JSR(Registers& registers, MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetWord(registers.PC + 1);
+	auto operand = GetWordOperand(registers, memoryMap);
 	uint16_t value = registers.PC + 2; //point to the address BEFORE the NEXT instruction
 	Push_Helper(registers, memoryMap, value);
 	registers.PC = operand;
@@ -840,7 +855,7 @@ void NesEmu::SED(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::CMP_Immediate(Registers& registers, MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	CMP_Helper(registers, registers.A, operand);
 }
 
@@ -873,7 +888,7 @@ void NesEmu::CMP_Indirect_Y(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::CPX_Immediate(Registers& registers, MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	CMP_Helper(registers, registers.X, operand);
 }
 
@@ -886,7 +901,7 @@ void NesEmu::CPX_Absolute(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::CPY_Immediate(Registers& registers, MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	CMP_Helper(registers, registers.Y, operand);
 }
 
@@ -899,7 +914,7 @@ void NesEmu::CPY_Absolute(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::ORA_Immediate(Registers& registers, MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	ORA_Helper(registers, operand);
 }
 
@@ -1002,7 +1017,7 @@ void NesEmu::RTS(Registers& registers, MemoryMap& memoryMap) {
 }
 
 void NesEmu::SBC_Immediate(Registers& registers, MemoryMap& memoryMap) {
-	auto operand = memoryMap.GetByte(registers.PC + 1);
+	auto operand = GetByteOperand(registers, memoryMap);
 	SBC_Helper(registers, operand);
 }
 

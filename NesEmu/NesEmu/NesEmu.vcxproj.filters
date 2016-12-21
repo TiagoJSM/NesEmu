@@ -51,6 +51,9 @@
     <ClInclude Include="Decoder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Emulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Registers.cpp">
@@ -78,6 +81,9 @@
       <Filter>Source Files\AddressResourceMappings</Filter>
     </ClCompile>
     <ClCompile Include="Decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Emulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

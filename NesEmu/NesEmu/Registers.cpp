@@ -3,6 +3,8 @@
 namespace NesEmu {
 
 	Registers::Registers() : A(0), X(0), Y(0), S(0), P(0), PC(0) { }
+	Registers::Registers(uint8_t A, uint8_t X, uint8_t Y, uint8_t S, uint8_t P, uint16_t PC)
+		: A(A), X(X), Y(Y), S(S), P(P), PC(PC) {}
 
 	bool Registers::Carry() {
 		return (this->P & CARRY_MASK);
@@ -65,6 +67,6 @@ namespace NesEmu {
 	}
 
 	void Registers::SetBits(bool condition, uint8_t bitMask) {
-		this->P = condition ? (this->P | bitMask) : (this->P & !bitMask);
+		this->P = condition ? (this->P | bitMask) : (this->P & ~bitMask);
 	}
 }

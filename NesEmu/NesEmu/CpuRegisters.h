@@ -17,13 +17,13 @@ namespace NesEmu {
     // B - this is set when a software interrupt (BRK instruction) is executed
     // V - Overflow flag
     // S - Sign flag
-	class Registers {
+	class CpuRegisters {
 	public:
 		uint8_t A, X, Y, S, P; //s = stack pointer, P = processor status
 		uint16_t PC;
 
-		Registers();
-		Registers(uint8_t A, uint8_t X, uint8_t Y, uint8_t SP, uint8_t P, uint16_t PC);
+		CpuRegisters();
+		CpuRegisters(uint8_t A, uint8_t X, uint8_t Y, uint8_t SP, uint8_t P, uint16_t PC);
 
 		bool Carry();
 		bool Zero();
@@ -42,7 +42,7 @@ namespace NesEmu {
 		void SetInterrupt(bool set);
 		void SetDecimal(bool set);
 
-		bool operator==(const Registers& other) {
+		bool operator==(const CpuRegisters& other) {
 			return 
 				A == other.A &&
 				X == other.X &&

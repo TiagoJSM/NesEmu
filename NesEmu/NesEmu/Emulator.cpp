@@ -1,7 +1,7 @@
 #include "Emulator.h"
 
 namespace NesEmu {
-	Emulator::Emulator(Registers& registers, MemoryMap& memoryMap)
+	Emulator::Emulator(CpuRegisters& registers, MemoryMap& memoryMap)
 		: _registers(registers), _memoryMap(memoryMap) {}
 
 	void Emulator::RunTo(uint16_t targetProgramCounter) {

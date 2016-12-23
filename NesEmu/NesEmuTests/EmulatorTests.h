@@ -13,7 +13,7 @@ using namespace NesEmu;
 namespace NesEmuTests {
 	struct EmulationResult {
 		vector<string> lines;
-		Registers registers;
+		CpuRegisters registers;
 	};
 
 	struct EmulatorTest : testing::Test, testing::WithParamInterface<EmulationResult> {
@@ -23,7 +23,7 @@ namespace NesEmuTests {
 		auto param = GetParam();
 		AssemblyModule module(param.lines);
 		
-		Registers registers;
+		CpuRegisters registers;
 		Memory memory;
 		MemoryMap memoryMap(memory);
 		auto s = registers == registers;
@@ -48,7 +48,7 @@ namespace NesEmuTests {
 			"BNE decrement",
 			"STX $0201",
 			"BRK",},
-		Registers(
+		CpuRegisters(
 			0x00, //A
 			0x03, //X
 			0x00, //Y

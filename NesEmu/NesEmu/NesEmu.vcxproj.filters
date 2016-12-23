@@ -19,21 +19,21 @@
     <Filter Include="Source Files\AddressResourceMappings">
       <UniqueIdentifier>{a940fc54-d606-47f6-a03b-846d5a0f195a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\CPU">
+      <UniqueIdentifier>{96aba110-99f6-4a42-8bbd-fd547039dc21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CPU">
+      <UniqueIdentifier>{9519f808-9d5e-47b3-8d87-7be4215246ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PPU">
+      <UniqueIdentifier>{ef5d84e7-56a0-4245-889d-92639300d842}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PPU">
+      <UniqueIdentifier>{e40a0447-1998-428e-b032-88fcd153dbc8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Registers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StatusFlags.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OPCodes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilitaryFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Macros.h">
@@ -48,27 +48,33 @@
     <ClInclude Include="MemoryResourceMapping.h">
       <Filter>Header Files\AddressResourceMappings</Filter>
     </ClInclude>
-    <ClInclude Include="Decoder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Emulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OPCodes.h">
+      <Filter>Header Files\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="CpuRegisters.h">
+      <Filter>Header Files\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusFlags.h">
+      <Filter>Header Files\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilitaryFunctions.h">
+      <Filter>Header Files\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="Decoder.h">
+      <Filter>Header Files\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="PpuRegisters.h">
+      <Filter>Header Files\PPU</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Registers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OPCodes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitaryFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MemoryMap.cpp">
@@ -80,11 +86,23 @@
     <ClCompile Include="MemoryResourceMapping.cpp">
       <Filter>Source Files\AddressResourceMappings</Filter>
     </ClCompile>
-    <ClCompile Include="Decoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Emulator.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitaryFunctions.cpp">
+      <Filter>Source Files\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="OPCodes.cpp">
+      <Filter>Source Files\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="CpuRegisters.cpp">
+      <Filter>Source Files\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="Decoder.cpp">
+      <Filter>Source Files\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="PpuRegisters.cpp">
+      <Filter>Source Files\PPU</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -150,7 +150,8 @@
     <ClInclude Include="MemoryMap.h" />
     <ClInclude Include="MemoryResourceMapping.h" />
     <ClInclude Include="OPCodes.h" />
-    <ClInclude Include="Registers.h" />
+    <ClInclude Include="CpuRegisters.h" />
+    <ClInclude Include="PpuRegisters.h" />
     <ClInclude Include="StatusFlags.h" />
     <ClInclude Include="UtilitaryFunctions.h" />
   </ItemGroup>
@@ -163,7 +164,8 @@
     <ClCompile Include="MemoryMap.cpp" />
     <ClCompile Include="MemoryResourceMapping.cpp" />
     <ClCompile Include="OPCodes.cpp" />
-    <ClCompile Include="Registers.cpp" />
+    <ClCompile Include="CpuRegisters.cpp" />
+    <ClCompile Include="PpuRegisters.cpp" />
     <ClCompile Include="UtilitaryFunctions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,11 +1,11 @@
-#include "Registers.h"
+#include "CpuRegisters.h"
 #include "Memory.h"
 #include "OPCodes.h"
 #include "MemoryMap.h"
 
 //namespace NesEmu {
 	int main() {
-		NesEmu::Registers registers;
+		NesEmu::CpuRegisters registers;
 		NesEmu::Memory memory;
 		NesEmu::MemoryMap memoryMap(memory);
 

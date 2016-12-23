@@ -1,6 +1,9 @@
 #include "PpuRegisters.h"
 
+#define PpuAddressBlockSize 0x4000;
+
 namespace NesEmu {
+
 	bool PpuRegisters::NmiEnable() {
 		return (this->PPUCTRL & BIT_7_MASK);
 	}
@@ -113,5 +116,10 @@ namespace NesEmu {
 			PPUADDR_Low = data;
 		}
 		_setAddrHigh = !_setAddrHigh;
+	}
+
+	uint16_t PpuRegisters::GetPpuAddress() {
+		auto address = (PPUADDR_High << 8) | PPUADDR_Low;
+		return address % PpuAddressBlockSize;
 	}
 }

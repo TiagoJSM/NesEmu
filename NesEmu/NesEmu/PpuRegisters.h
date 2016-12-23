@@ -52,6 +52,7 @@ namespace NesEmu {
 		void SetPPUSCROLL(uint8_t data);
 
 		void SetPPUADDR(uint8_t data);
+		uint16_t GetPpuAddress();
 	private:
 		uint8_t OAMDATA;
 		uint8_t PPUSTATUS;

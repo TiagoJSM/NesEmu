@@ -9,7 +9,9 @@ using namespace std;
 
 namespace NesEmu{
 	struct Memory {
-		uint8_t data[2 * KBYTE];
+		vector<uint8_t> data;
+
+		Memory(uint16_t size);
 
 		uint8_t GetByte(uint16_t address);
 		uint16_t GetWord(uint16_t address);

@@ -23,4 +23,12 @@ namespace NesEmu {
 	void MemoryResourceMapping::StoreWord(uint16_t address, uint16_t word) {
 		_memory->StoreWord(GetAddressWithoutMirroring(address), word);
 	}
+
+	void MemoryResourceMapping::GetData(uint16_t startAddress, uint16_t byteCount, vector<uint8_t>::iterator output) {
+		copy(_memory->data.begin(), _memory->data.begin() + byteCount + startAddress, output);
+	}
+
+	void MemoryResourceMapping::SetData(uint16_t startAddress, const vector<uint8_t>& input) {
+		copy(input.begin(), input.end(), _memory->data.begin());
+	}
 }

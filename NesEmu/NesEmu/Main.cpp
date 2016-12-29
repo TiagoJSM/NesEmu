@@ -6,7 +6,7 @@
 //namespace NesEmu {
 	int main() {
 		NesEmu::CpuRegisters registers;
-		NesEmu::Memory memory;
+		NesEmu::Memory memory(2 * KBYTE);
 		NesEmu::MemoryMap memoryMap(memory);
 
 		memory.data[1] = -1;

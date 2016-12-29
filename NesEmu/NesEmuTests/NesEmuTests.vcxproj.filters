@@ -21,6 +21,9 @@
     <ClInclude Include="EmulatorTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PpuTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">

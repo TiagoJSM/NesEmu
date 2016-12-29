@@ -1,6 +1,9 @@
 #include "Memory.h"
 
 namespace NesEmu {
+
+	Memory::Memory(uint16_t size) : data(size) { }
+
 	uint8_t Memory::GetByte(uint16_t address) {
 		return this->data[address];
 	}

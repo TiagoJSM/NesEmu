@@ -24,7 +24,7 @@ namespace NesEmuTests {
 		AssemblyModule module(param.lines);
 		
 		CpuRegisters registers;
-		Memory memory;
+		Memory memory(2 * KBYTE);
 		MemoryMap memoryMap(memory);
 		auto s = registers == registers;
 		auto compilationResult = module.Compile(0x600);

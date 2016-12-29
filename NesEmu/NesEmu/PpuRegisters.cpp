@@ -145,4 +145,8 @@ namespace NesEmu {
 	void PpuRegisters::IncrementPPUADDR() {
 		SetPPUADDR(static_cast<uint16_t>(GetPpuAddress() + VRamAddressIncrement()));
 	}
+
+	void PpuRegisters::SetOAMDATA(uint8_t data, PpuMemoryResourceMapping& ppuMemory, CpuMemoryResourceMapping& cpuMemory) {
+
+	}
 }

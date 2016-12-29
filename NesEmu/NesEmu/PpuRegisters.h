@@ -3,6 +3,7 @@
 #include <stdint.h>
 
 #include "Macros.h"
+#include "PpuMemoryResourceMapping.h"
 
 namespace NesEmu {
 	//https://wiki.nesdev.com/w/index.php/PPU_registers
@@ -13,7 +14,7 @@ namespace NesEmu {
 
 	class PpuRegisters {
 	public:
-		uint8_t PPUCTRL, PPUMASK, OAMADDR, PPUDATA, OAMDMA;
+		uint8_t PPUCTRL, PPUMASK, OAMADDR, OAMDMA;
 
 		//PPUCTRL decode
 		bool NmiEnable();
@@ -53,6 +54,9 @@ namespace NesEmu {
 
 		void SetPPUADDR(uint8_t data);
 		uint16_t GetPpuAddress();
+
+		void SetPPUDATA(uint8_t data, PpuMemoryResourceMapping& memory);
+		uint8_t GetPPUDATA(PpuMemoryResourceMapping& memory);
 	private:
 		uint8_t OAMDATA;
 		uint8_t PPUSTATUS;
@@ -65,5 +69,9 @@ namespace NesEmu {
 		uint8_t PPUADDR_Low;
 		bool _setAddrHigh;
 		
+		bool _vRamDataDirty;
+
+		void SetPPUADDR(uint16_t data);
+		void IncrementPPUADDR();
 	};
 }

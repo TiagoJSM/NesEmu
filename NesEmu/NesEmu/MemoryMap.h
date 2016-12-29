@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "BaseAddressResourceMapping.h"
-#include "MemoryResourceMapping.h"
+#include "CpuMemoryResourceMapping.h"
 #include "Memory.h"
 
 using namespace std;

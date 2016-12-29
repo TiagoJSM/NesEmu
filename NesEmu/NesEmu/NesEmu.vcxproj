@@ -148,9 +148,11 @@
     <ClInclude Include="Macros.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="MemoryMap.h" />
+    <ClInclude Include="CpuMemoryResourceMapping.h" />
     <ClInclude Include="MemoryResourceMapping.h" />
     <ClInclude Include="OPCodes.h" />
     <ClInclude Include="CpuRegisters.h" />
+    <ClInclude Include="PpuMemoryResourceMapping.h" />
     <ClInclude Include="PpuRegisters.h" />
     <ClInclude Include="StatusFlags.h" />
     <ClInclude Include="UtilitaryFunctions.h" />
@@ -162,9 +164,11 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Memory.cpp" />
     <ClCompile Include="MemoryMap.cpp" />
+    <ClCompile Include="CpuMemoryResourceMapping.cpp" />
     <ClCompile Include="MemoryResourceMapping.cpp" />
     <ClCompile Include="OPCodes.cpp" />
     <ClCompile Include="CpuRegisters.cpp" />
+    <ClCompile Include="PpuMemoryResourceMapping.cpp" />
     <ClCompile Include="PpuRegisters.cpp" />
     <ClCompile Include="UtilitaryFunctions.cpp" />
   </ItemGroup>

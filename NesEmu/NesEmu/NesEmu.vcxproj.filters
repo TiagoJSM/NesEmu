@@ -45,9 +45,6 @@
     <ClInclude Include="BaseAddressResourceMapping.h">
       <Filter>Header Files\AddressResourceMappings</Filter>
     </ClInclude>
-    <ClInclude Include="MemoryResourceMapping.h">
-      <Filter>Header Files\AddressResourceMappings</Filter>
-    </ClInclude>
     <ClInclude Include="Emulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,6 +66,15 @@
     <ClInclude Include="PpuRegisters.h">
       <Filter>Header Files\PPU</Filter>
     </ClInclude>
+    <ClInclude Include="PpuMemoryResourceMapping.h">
+      <Filter>Header Files\AddressResourceMappings</Filter>
+    </ClInclude>
+    <ClInclude Include="CpuMemoryResourceMapping.h">
+      <Filter>Header Files\AddressResourceMappings</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryResourceMapping.h">
+      <Filter>Header Files\AddressResourceMappings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -81,9 +87,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BaseAddressResourceMapping.cpp">
-      <Filter>Source Files\AddressResourceMappings</Filter>
-    </ClCompile>
-    <ClCompile Include="MemoryResourceMapping.cpp">
       <Filter>Source Files\AddressResourceMappings</Filter>
     </ClCompile>
     <ClCompile Include="Emulator.cpp">
@@ -103,6 +106,15 @@
     </ClCompile>
     <ClCompile Include="PpuRegisters.cpp">
       <Filter>Source Files\PPU</Filter>
+    </ClCompile>
+    <ClCompile Include="PpuMemoryResourceMapping.cpp">
+      <Filter>Source Files\AddressResourceMappings</Filter>
+    </ClCompile>
+    <ClCompile Include="CpuMemoryResourceMapping.cpp">
+      <Filter>Source Files\AddressResourceMappings</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryResourceMapping.cpp">
+      <Filter>Source Files\AddressResourceMappings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

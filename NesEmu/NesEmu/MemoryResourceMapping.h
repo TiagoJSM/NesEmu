@@ -6,15 +6,15 @@
 namespace NesEmu {
 	class MemoryResourceMapping : public BaseAddressResourceMapping {
 	public:
-		MemoryResourceMapping(Memory& memory);
+		MemoryResourceMapping(Memory& memory, uint16_t minAddress, uint16_t maxAddress);
 
 		uint8_t GetByte(uint16_t address) override;
 		uint16_t GetWord(uint16_t address) override;
 		void StoreByte(uint16_t address, uint8_t byte) override;
 		void StoreWord(uint16_t address, uint16_t word) override;
-	private:
+	protected:
 		Memory* _memory;
 
-		uint16_t GetAddressWithoutMirroring(uint16_t address);
+		virtual uint16_t GetAddressWithoutMirroring(uint16_t address) = 0;
 	};
 }

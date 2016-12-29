@@ -111,6 +111,9 @@ namespace NesEmu {
 	void PpuRegisters::SetPPUADDR(uint8_t data) {
 		if (_setAddrHigh) {
 			PPUADDR_High = data;
+			auto ppuAddress = GetPpuAddress();
+			//check https://wiki.nesdev.com/w/index.php/PPU_registers about setting the data dirty
+			_vRamDataDirty = ppuAddress >= 0x000 && ppuAddress <= 0x3EFF;
 		}
 		else {
 			PPUADDR_Low = data;
@@ -121,5 +124,25 @@ namespace NesEmu {
 	uint16_t PpuRegisters::GetPpuAddress() {
 		auto address = (PPUADDR_High << 8) | PPUADDR_Low;
 		return address % PpuAddressBlockSize;
+	}
+
+	void PpuRegisters::SetPPUADDR(uint16_t data) {
+		PPUADDR_Low = data & 0xFF;
+		PPUADDR_High = (data >> sizeof(uint8_t)) & 0xFF;
+	}
+
+	void PpuRegisters::SetPPUDATA(uint8_t data, PpuMemoryResourceMapping& memory) {
+		memory.StoreByte(GetPpuAddress(), data);
+		IncrementPPUADDR();
+	}
+
+	uint8_t PpuRegisters::GetPPUDATA(PpuMemoryResourceMapping& memory) {
+		auto result = memory.GetByte(GetPpuAddress());
+		IncrementPPUADDR();
+		return result;
+	}
+
+	void PpuRegisters::IncrementPPUADDR() {
+		SetPPUADDR(static_cast<uint16_t>(GetPpuAddress() + VRamAddressIncrement()));
 	}
 }

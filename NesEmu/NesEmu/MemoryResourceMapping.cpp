@@ -2,8 +2,8 @@
 
 #define RamMemoryBlockSize 0x0800
 
-namespace NesEmu{
-	MemoryResourceMapping::MemoryResourceMapping(Memory& memory)
+namespace NesEmu {
+	MemoryResourceMapping::MemoryResourceMapping(Memory& memory, uint16_t minAddress, uint16_t maxAddress)
 		: BaseAddressResourceMapping(0x0000, 0x1FFF) {
 		_memory = &memory;
 	}
@@ -22,9 +22,5 @@ namespace NesEmu{
 
 	void MemoryResourceMapping::StoreWord(uint16_t address, uint16_t word) {
 		_memory->StoreWord(GetAddressWithoutMirroring(address), word);
-	}
-
-	uint16_t MemoryResourceMapping::GetAddressWithoutMirroring(uint16_t address) {
-		return address % RamMemoryBlockSize;
 	}
 }

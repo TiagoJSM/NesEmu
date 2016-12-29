@@ -3,7 +3,7 @@
 namespace NesEmu {
 
 	MemoryMap::MemoryMap(Memory& memory) {
-		_resourceMappings = { new MemoryResourceMapping(memory) };
+		_resourceMappings = { new CpuMemoryResourceMapping(memory) };
 	}
 
 	MemoryMap::~MemoryMap() {

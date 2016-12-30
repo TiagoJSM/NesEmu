@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "EmulatorTests.h"
+#include "PpuTests.h"
 
 int main(int argc, char* argv[]) {
 	testing::InitGoogleTest(&argc, argv);

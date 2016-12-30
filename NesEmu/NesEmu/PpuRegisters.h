@@ -59,7 +59,7 @@ namespace NesEmu {
 		void SetPPUDATA(uint8_t data, PpuMemoryResourceMapping& memory);
 		uint8_t GetPPUDATA(PpuMemoryResourceMapping& memory);
 
-		void SetOAMDATA(uint8_t data, PpuMemoryResourceMapping& ppuMemory, CpuMemoryResourceMapping& cpuMemory);
+		void SetOAMDMA(uint8_t highAddress, PpuMemoryResourceMapping& ppuMemory, CpuMemoryResourceMapping& cpuMemory);
 	private:
 		uint8_t OAMDATA;
 		uint8_t PPUSTATUS;

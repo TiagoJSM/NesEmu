@@ -146,7 +146,10 @@ namespace NesEmu {
 		SetPPUADDR(static_cast<uint16_t>(GetPpuAddress() + VRamAddressIncrement()));
 	}
 
-	void PpuRegisters::SetOAMDATA(uint8_t data, PpuMemoryResourceMapping& ppuMemory, CpuMemoryResourceMapping& cpuMemory) {
-
+	void PpuRegisters::SetOAMDMA(uint8_t highAddress, PpuMemoryResourceMapping& ppuMemory, CpuMemoryResourceMapping& cpuMemory) {
+		auto size = 256;
+		vector<uint8_t> data(size);
+		cpuMemory.GetData((highAddress << 0xF) | 0x00, size, data.begin());
+		ppuMemory.SetData(OAMADDR, data);
 	}
 }
